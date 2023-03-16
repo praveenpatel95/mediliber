@@ -1,0 +1,29 @@
+@import "colors";
+
+.custom-checkbox {
+  input {
+    width: 25px;
+    height: 25px;
+    border-radius: 50% !important;
+    cursor: pointer;
+  }
+
+  label {
+    font-size: 20px !important;
+    padding-left: 10px !important;
+    line-height: 32px !important;
+    cursor: pointer;
+  }
+
+  .form-check-input {
+    &:checked {
+      background-color: $themeColorMain;
+      border-color: darken($themeColorMain, 5%);
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+}

@@ -1,0 +1,61 @@
+@import "src/styles/colors";
+
+#main-navbar.navbar {
+  .nav-link {
+    color: #fff !important;
+
+    background-image: linear-gradient(to right, #8bc34a, #5f8533 50%, #fff 50%);
+    font-weight: 500;
+    background-size: 200% 100%;
+    background-position: -100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease-in-out;
+
+    &:before {
+      content: '';
+      background: #673ab7;
+      display: block;
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+    }
+
+    &:hover {
+      color: $themeColorMain !important;
+      background-position: 0;
+    }
+
+    &:hover::before {
+      width: 100%;
+    }
+
+    &:focus {
+      color: $themeColorMain;
+    }
+
+  }
+
+  .nav-link.active {
+    color: $themeColorMain !important;
+  }
+
+  .border-2 {
+    border: 2px solid;
+  }
+}
+
+.canvas_header_menu.show {
+  background: darken($themeColorMain, 1%) !important;
+
+    .nav-link {
+      border-bottom: 1px dashed #62902d;
+
+      &:hover {
+        color: #fff !important;
+      }
+  }
+
+}

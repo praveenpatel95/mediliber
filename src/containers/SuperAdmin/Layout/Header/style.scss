@@ -1,0 +1,42 @@
+@import "src/styles/colors";
+
+#admin-navbar.navbar {
+  .nav-link {
+    color: #fff !important;
+
+    &:hover {
+      color: $themeColorMain !important;
+      background-position: 0;
+    }
+
+    &:hover::before {
+      width: 100%;
+    }
+
+    &:focus {
+      color: $themeColorMain;
+    }
+
+  }
+
+  .nav-link.active {
+    color: $themeColorMain !important;
+  }
+
+  .border-2 {
+    border: 2px solid;
+  }
+}
+
+.canvas_header_menu.show {
+  background: darken($themeColorMain, 1%) !important;
+
+  .nav-link {
+    border-bottom: 1px dashed #62902d;
+
+    &:hover {
+      color: #fff !important;
+    }
+  }
+
+}

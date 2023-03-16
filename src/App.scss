@@ -1,0 +1,14 @@
+@import "styles/custom";
+@import "bootstrap";
+$themecolor:#8cc63f;
+.btn-primary {
+  @include button-variant($themecolor, darken($themecolor, 7.5%), darken(#fff, 2%), lighten($themecolor,5%), lighten($themecolor, 10%), darken(#fff, 0%));
+}
+.primary-text{
+  color: $themecolor;
+}
+.theme_border_1{border: 1px solid #8cc63f;}
+.navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,<svg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'><path stroke='rgba(140,198,63, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+}
+.navbar-toggler:focus{box-shadow: none}

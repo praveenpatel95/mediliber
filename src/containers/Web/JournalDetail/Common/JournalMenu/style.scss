@@ -1,0 +1,57 @@
+@import "../../../../../styles/colors";
+#journal-menu{
+  padding: 0px;
+  border-top: 1px solid #ffffffbf;
+
+  .nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  .navbar-nav{
+    display: flex;
+    width: 100%;
+  }
+  .nav-item.dropdown {
+    position: inherit;
+    flex: 1 1 auto!important;
+    .dropdown-menu{
+      z-index: 9999;
+      padding: 20px 0px;
+      .dropdown-item:hover{
+        background-color: #8bc34a1c !important;
+      }
+    }
+  }
+  .dropdown-item:active{background: transparent; color: $themeColorMain !important;}
+
+
+  .nav-link{
+    flex: 1 1 auto!important;
+    padding-left: 15px;
+    padding-bottom: 12px;
+    border-right: 1px solid #ffffffbf;
+    color: #fff !important;
+    &:hover{
+      background: #fff;
+      color: $themeColor !important;
+    }
+    &:last-child {
+      border-right: none;
+    }
+  }
+  .dropdown-toggle::after {
+    border-top: 0.7em solid;
+    border-right: 0.5em solid transparent;
+    border-left: 0.5em solid transparent;
+    float: right;
+    margin-top: 10px;
+  }
+
+    .dropdown-menu {
+    transition: all 0.25s ease 0s;
+    border-radius: 0;
+    box-shadow: 10px 0px 8px #888;
+    width: 100%;
+    transform: translate(0px, -1px); /* change numbers for your layout */
+    box-shadow: rgb(0 0 0 / 21%) 0px 4px 6px;
+  }
+}
