@@ -11,7 +11,6 @@ import {updateProfile} from "../../../stores/Auth/actions";
 function UpdateProfile({updateUserProfile}) {
     const {isProfileUpdating, isProfileUpdatingError, user} = useSelector(state => state?.AuthReducer)
 
-
     const onSubmit = () => {
         const formData = new FormData();
         formData.append('name', values.name)
@@ -50,7 +49,6 @@ function UpdateProfile({updateUserProfile}) {
     const handleResetForm = () => {
         clearFormState();
     }
-    console.log("USER", user)
     return (
         <HelmetProvider>
             <Helmet>

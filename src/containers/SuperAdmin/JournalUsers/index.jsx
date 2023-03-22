@@ -8,7 +8,7 @@ import Loader from "../../../components/Loader";
 import {connect, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {compose} from "redux";
-import {journalUserDelete, journalUsers} from "../../../stores/JournalUsers/actions";
+import {journalUserDelete, journalUsers} from "../../../stores/SuperAdmin/JournalUsers/actions";
 import DeleteModal from "../../../components/DeleteModal";
 
 function JournalUsers({getJournalUsers, deleteJournalUser}) {
@@ -53,7 +53,7 @@ function JournalUsers({getJournalUsers, deleteJournalUser}) {
                 <Container className="d-flex justify-content-between">
                     <div>
                         <Breadcrumb>
-                            <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
+                            <Breadcrumb.Item linkAs={Link} linkProps={{to: `/super-admin/dashboard`}}>Home</Breadcrumb.Item>
                             <Breadcrumb.Item active>Journal Access Users</Breadcrumb.Item>
                         </Breadcrumb>
                     </div>

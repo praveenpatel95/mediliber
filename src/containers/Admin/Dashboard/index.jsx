@@ -13,26 +13,36 @@ function Dashboard() {
                 <Container>
                     <h4>Welcome to admin panel</h4>
                 </Container>
-                <Container>
+                <Container className="text-center">
                     <Row>
                         <Col sm={4}>
-                            <Card as={Link} to="/super-admin/journal-categories" bg="primary" >
+                            <Card as={Link} to="/admin/journal-profile" bg="primary" >
                                 <Card.Body>
-                                    <h5 className="text-white">Journal Category List</h5>
+                                    <h5 className="text-white">Update Journal Detail</h5>
                                 </Card.Body>
                             </Card>
                         </Col>
                         <Col sm={4}>
-                            <Card as={Link} to="/super-admin/journals" bg="success" >
+                            <Card as={Link} to="/admin/journal-pages" bg="success" >
                                 <Card.Body>
-                                    <h5 className="text-white">Journals List</h5>
+                                    <h5 className="text-white">Journals Pages</h5>
                                 </Card.Body>
                             </Card>
                         </Col>
                         <Col sm={4}>
-                            <Card as={Link} to="/super-admin/journal/access/users" bg="danger" >
+                            <Card as={Link} to="/admin/editorial-board" bg="danger" >
                                 <Card.Body>
-                                    <h5 className="text-white">Journals Access Users</h5>
+                                    <h5 className="text-white">Editorial Board</h5>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+
+                    </Row>
+                    <Row className="mt-4">
+                        <Col sm={4}>
+                            <Card as={Link} to="/admin/reviewer-board" bg="dark" >
+                                <Card.Body>
+                                    <h5 className="text-white">Reviewer Board</h5>
                                 </Card.Body>
                             </Card>
                         </Col>

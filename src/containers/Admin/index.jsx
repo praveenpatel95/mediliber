@@ -1,26 +1,23 @@
-import {Outlet, useNavigate} from "react-router-dom";
-import {useEffect} from "react";
+import {Outlet} from "react-router-dom";
 import {useSelector} from "react-redux";
 import Header from "./Layout/Header";
+import Protected from "../Auth/Protected/Protected";
+import {useEffect, useState} from "react";
 
-function AdminLayout(){
+function AdminLayout() {
     const {
-        isAuthenticated
+        isAuthenticated,
+        user
     } = useSelector(state => state?.AuthReducer);
 
-    const navigate = useNavigate();
-    useEffect(() => {
-        if(!isAuthenticated){
-            navigate('/auth/login');
-        }
-    }, [isAuthenticated]);
 
     return (
-        <>
-            <Header />
+        <Protected isAuthenticated={isAuthenticated} user={user} role='admin'>
+            <Header/>
             <Outlet/>
-        </>
+        </Protected>
 
     )
 }
+
 export default AdminLayout;

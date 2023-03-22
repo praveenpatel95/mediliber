@@ -9,10 +9,10 @@ import * as Yup from "yup";
 import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
 import {useEffect} from "react";
-import {journalCreate, journalGet, journalUpdate} from "../../../../stores/Journals/actions";
+import {journalCreate, journalGet, journalUpdate} from "../../../../stores/SuperAdmin/Journals/actions";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import {journalCategoryList} from "../../../../stores/JournalCategory/actions";
+import {journalCategoryList} from "../../../../stores/SuperAdmin/JournalCategory/actions";
 
 function JournalCreate({createJournal, getJournal, updateJournal, journalCategoryList}) {
     let {journalId} = useParams();
@@ -127,7 +127,7 @@ function JournalCreate({createJournal, getJournal, updateJournal, journalCategor
                 <Container className="d-flex justify-content-between">
                     <div>
                         <Breadcrumb>
-                            <Breadcrumb.Item>Home</Breadcrumb.Item>
+                            <Breadcrumb.Item linkAs={Link} linkProps={{to: `/super-admin/dashboard`}}>Home</Breadcrumb.Item>
                             <Breadcrumb.Item linkAs={Link}
                                              linkProps={{to: `/super-admin/journals`}}>Journals</Breadcrumb.Item>
                             <Breadcrumb.Item
@@ -198,7 +198,8 @@ function JournalCreate({createJournal, getJournal, updateJournal, journalCategor
                                     </Form.Group>
                                     <Form.Group as={Col} md="12" className="mb-3">
                                         <Form.Label>Banner Content</Form.Label>
-                                        <ReactQuill theme="snow" value={values?.banner_content}
+                                        <ReactQuill theme="snow"
+                                                    value={values?.banner_content}
                                                     onChange={(e) => setValues({...values, banner_content: e})}/>
                                         {touched?.banner_content && errors?.banner_content ? (
                                             <Form.Text className="text-danger">{errors?.banner_content}</Form.Text>

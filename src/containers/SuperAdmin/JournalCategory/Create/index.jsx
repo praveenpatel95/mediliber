@@ -12,7 +12,7 @@ import {
     journalCategoryCreate,
     journalCategoryGet,
     journalCategoryUpdate
-} from "../../../../stores/JournalCategory/actions";
+} from "../../../../stores/SuperAdmin/JournalCategory/actions";
 import {useEffect} from "react";
 
 function JournalCategoryCreate({createJournalCategory, getJournalCategory, updateJournalCategory}) {
@@ -89,7 +89,7 @@ function JournalCategoryCreate({createJournalCategory, getJournalCategory, updat
                 <Container className="d-flex justify-content-between">
                     <div>
                         <Breadcrumb>
-                            <Breadcrumb.Item>Home</Breadcrumb.Item>
+                            <Breadcrumb.Item linkAs={Link} linkProps={{to: `/super-admin/dashboard`}}>Home</Breadcrumb.Item>
                             <Breadcrumb.Item linkAs={Link} linkProps={{to: `/super-admin/journal-categories`}}>Journal
                                 Categories</Breadcrumb.Item>
                             <Breadcrumb.Item active>{categoryId ? "Update Category" : "Create New Category"}</Breadcrumb.Item>

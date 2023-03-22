@@ -9,7 +9,7 @@ import {useEffect, useState} from "react";
 import {
     journalCategoryDelete,
     journalCategoryList
-} from "../../../stores/JournalCategory/actions";
+} from "../../../stores/SuperAdmin/JournalCategory/actions";
 import {compose} from "redux";
 import DeleteModal from "../../../components/DeleteModal";
 import Loader from "../../../components/Loader";
@@ -57,7 +57,7 @@ function JournalCategory({getJournalCategoryList, deleteJournalCategory}) {
                 <Container className="d-flex justify-content-between">
                     <div>
                         <Breadcrumb>
-                            <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
+                            <Breadcrumb.Item linkAs={Link} linkProps={{to: `/super-admin/dashboard`}}>Home</Breadcrumb.Item>
                             <Breadcrumb.Item active>Journal Categories</Breadcrumb.Item>
                         </Breadcrumb>
                     </div>

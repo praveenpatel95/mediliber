@@ -1,5 +1,5 @@
 import {Alert, Button, Modal, Spinner} from "react-bootstrap";
-import {journalCategoryDelete, journalCategoryList} from "../../stores/JournalCategory/actions";
+import {journalCategoryDelete, journalCategoryList} from "../../stores/SuperAdmin/JournalCategory/actions";
 import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
 import {useEffect} from "react";

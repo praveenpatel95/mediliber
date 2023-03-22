@@ -1,0 +1,6 @@
+/**
+ * Get List
+ */
+export const JOURNAL_LIST = "JOURNAL_LIST";
+export const JOURNAL_LIST_SUCCESS = "JOURNAL_LIST_SUCCESS";
+export const JOURNAL_LIST_FAILURE = "JOURNAL_LIST_FAILURE";

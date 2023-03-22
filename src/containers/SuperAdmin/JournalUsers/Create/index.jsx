@@ -9,8 +9,8 @@ import * as Yup from "yup";
 import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
 import {useEffect} from "react";
-import {journalUserCreate} from "../../../../stores/JournalUsers/actions";
-import {journalList} from "../../../../stores/Journals/actions";
+import {journalUserCreate} from "../../../../stores/SuperAdmin/JournalUsers/actions";
+import {journalList} from "../../../../stores/SuperAdmin/Journals/actions";
 
 function JournalUserCreate({createJournalUser, getJournals}) {
     useEffect(() => {
@@ -89,7 +89,7 @@ function JournalUserCreate({createJournalUser, getJournals}) {
                 <Container className="d-flex justify-content-between">
                     <div>
                         <Breadcrumb>
-                            <Breadcrumb.Item>Home</Breadcrumb.Item>
+                            <Breadcrumb.Item linkAs={Link} linkProps={{to: `/super-admin/dashboard`}}>Home</Breadcrumb.Item>
                             <Breadcrumb.Item linkAs={Link} linkProps={{to: `/super-admin/journal/access/users`}}>Journal
                                 Categories</Breadcrumb.Item>
                             <Breadcrumb.Item

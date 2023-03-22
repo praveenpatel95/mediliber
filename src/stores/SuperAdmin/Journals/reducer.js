@@ -28,7 +28,8 @@ const JournalReducer = (state = initialState, action) => {
                 isJournalListFetching: true,
                 isJournalListFetchingError: null,
                 isJournalCreated: false,
-                isJournalDeleted: false
+                isJournalDeleted: false,
+                journal: {},
             }
         case types.JOURNAL_LIST_SUCCESS:
             return {

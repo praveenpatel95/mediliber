@@ -48,7 +48,6 @@ function Login({callLogin}) {
     });
 
     const navigate = useNavigate();
-    console.log("user", user)
     useEffect(() => {
         if(isAuthenticated && user){
             if(user?.role_type === 'super_admin'){

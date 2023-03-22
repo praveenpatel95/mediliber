@@ -9,8 +9,11 @@ import JournalUsers from "../containers/SuperAdmin/JournalUsers";
 import JournalUserCreate from "../containers/SuperAdmin/JournalUsers/Create";
 import UpdateProfile from "../containers/Auth/UpdateProfile";
 import UpdatePassword from "../containers/Auth/UpdatePassword";
+import Indexing from "../containers/SuperAdmin/Indexing";
+import IndexingCreate from "../containers/SuperAdmin/Indexing/Create";
 
 export default [
+
     <Route path="super-admin" element={<SuperAdminLayout/>}>
         <Route path='dashboard' element={<Dashboard/>}/>
 
@@ -27,5 +30,9 @@ export default [
 
         <Route path='update-profile' element={<UpdateProfile/>}/>
         <Route path='update-password' element={<UpdatePassword/>}/>
+
+        <Route path='indexing' element={<Indexing/>}/>
+        <Route path='indexing/create' element={<IndexingCreate/>}/>
+        <Route path='indexing/edit/:indexingId' element={<IndexingCreate/>}/>
     </Route>
 ];

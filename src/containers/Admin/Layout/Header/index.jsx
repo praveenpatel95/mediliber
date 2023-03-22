@@ -41,23 +41,15 @@ function Header() {
                     <Offcanvas.Body >
 
                         <Nav className="me-auto">
-
-                            <NavDropdown title="Journal">
-                                <NavDropdown.Item as={Link} to="/super-admin/journal-categories">
-                                    Journal Categories
-                                </NavDropdown.Item>
-                                <NavDropdown.Item as={Link} to="/super-admin/journals">
-                                    Journals
-                                </NavDropdown.Item>
-                                <NavDropdown.Item as={Link} to="/super-admin/journal/access/users">
-                                    Journal Access user
-                                </NavDropdown.Item>
-                            </NavDropdown>
+                            <Nav.Link as={Link} to="/admin/journal-profile">Journal Profile</Nav.Link>
+                            <Nav.Link as={Link} to="/admin/journal-pages">Journal Pages</Nav.Link>
+                            <Nav.Link as={Link} to="/admin/editorial-board">Editorial Board</Nav.Link>
+                            <Nav.Link as={Link} to="/admin/reviewer-board">Reviewer Board</Nav.Link>
                         </Nav>
                         <Nav >
                             <NavDropdown title="My Account">
-                                <NavDropdown.Item  as={Link} to="/super-admin/update-profile">My Profile</NavDropdown.Item>
-                                <NavDropdown.Item as={Link} to="/super-admin/update-password">
+                                <NavDropdown.Item as={Link} to="/admin/update-profile">My Profile</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/admin/update-password">
                                     Change Password
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider />

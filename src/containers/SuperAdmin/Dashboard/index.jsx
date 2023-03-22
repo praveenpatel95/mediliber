@@ -37,6 +37,15 @@ function Dashboard() {
                             </Card>
                         </Col>
                     </Row>
+                    <Row className="mt-4">
+                        <Col sm={4}>
+                            <Card as={Link} to="/super-admin/indexing" bg="dark" >
+                                <Card.Body>
+                                    <h5 className="text-white">Indexing and Services</h5>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Container>
             </section>
         </HelmetProvider>

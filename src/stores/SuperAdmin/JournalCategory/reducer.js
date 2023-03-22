@@ -26,7 +26,8 @@ const JournalCategoryReducer = (state = initialState, action) => {
                 isJournalCategoryListFetching: true,
                 isJournalCategoryListFetchingError: null,
                 isJournalCategoryCreated: false,
-                isJournalCategoryDeleted:false
+                isJournalCategoryDeleted:false,
+                journalCategory: {},
             }
         case types.JOURNAL_CATEGORY_LIST_SUCCESS:
             return {
