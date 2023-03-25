@@ -28,7 +28,6 @@ function EditorialBoardCreate({createEditorialBoard, getEditorialBoard, updateEd
         isEditorialBoardCreatingError,
         isEditorialBoardCreated,
 
-        isEditorialBoardGetFetching,
         isEditorialBoardGetFetchingError,
         editorialBoard,
 
@@ -40,17 +39,20 @@ function EditorialBoardCreate({createEditorialBoard, getEditorialBoard, updateEd
         formData.append('first_name', values.first_name)
         formData.append('last_name', values.last_name)
         formData.append('affiliation', values.affiliation)
+        formData.append('email', values.email)
+        formData.append('email_other', values.email_other ? values.email_other :'')
         formData.append('mobile_no', values.mobile_no)
         formData.append('earning_policy', values.earning_policy)
         formData.append('whatsapp_no', values.whatsapp_no ? values.whatsapp_no : "")
-        formData.append('photo', values.photo ? values.photo : "")
-        formData.append('certificate', values.certificate ? values?.certificate : "")
-        formData.append('expected_submission_date', values.expected_submission_date ? values?.expected_submission_date : "")
-        formData.append('agreement_file', values.agreement_file ? values?.agreement_file : "")
+        formData.append('photo', values.photo ? values.photo : "");
+        formData.append('certificate', values.certificate ? values?.certificate : "");
+        formData.append('agreement_file', values.agreement_file ? values?.agreement_file : "");
         formData.append('cv', values.cv ? values?.cv : "")
         formData.append('google_scholar', values.google_scholar ? values?.google_scholar : "")
         formData.append('research_gate', values.research_gate ? values?.research_gate : "")
         formData.append('orcid', values.orcid ? values?.orcid : "")
+        formData.append('expected_submission_date', values.expected_submission_date ? moment(values.expected_submission_date).format("DD-MM-YYYY") : "")
+
 
         if (EditorialId) {
             updateEditorialBoard({formData, id: EditorialId});
@@ -87,6 +89,8 @@ function EditorialBoardCreate({createEditorialBoard, getEditorialBoard, updateEd
             first_name: "",
             last_name: "",
             affiliation: "",
+            email: "",
+            email_other: "",
             mobile_no: "",
             whatsapp_no: "",
             photo: "",
@@ -103,7 +107,7 @@ function EditorialBoardCreate({createEditorialBoard, getEditorialBoard, updateEd
             first_name: Yup.string().required('First name is required'),
             last_name: Yup.string().required('Last name is required'),
             affiliation: Yup.string().required('Affiliation is required'),
-            mobile_no: Yup.string().required('Mobile no is required'),
+            email: Yup.string().required('Email address is required'),
             earning_policy: Yup.string().required('Earning policy is required'),
         }),
         onSubmit,
@@ -117,6 +121,8 @@ function EditorialBoardCreate({createEditorialBoard, getEditorialBoard, updateEd
                     first_name: editorialBoard?.first_name,
                     last_name: editorialBoard?.last_name,
                     affiliation: editorialBoard?.affiliation,
+                    email: editorialBoard?.email,
+                    email_other: editorialBoard?.email_other,
                     mobile_no: editorialBoard?.mobile_no,
                     whatsapp_no: editorialBoard?.whatsapp_no,
                     earning_policy: editorialBoard?.earning_policy,
@@ -134,7 +140,6 @@ function EditorialBoardCreate({createEditorialBoard, getEditorialBoard, updateEd
     const handleImage = (e) => {
         setValues({...values, [e.target.name]: e.target.files[0]})
     }
-
 
 
     return (
@@ -192,6 +197,37 @@ function EditorialBoardCreate({createEditorialBoard, getEditorialBoard, updateEd
                                             />
                                             {touched?.last_name && errors?.last_name ? (
                                                 <Form.Text className="text-danger">{errors?.last_name}</Form.Text>
+                                            ) : (
+                                                ''
+                                            )}
+                                        </Form.Group>
+                                    </Row>
+                                    <Row>
+                                        <Form.Group as={Col} md="6" className="mb-3">
+                                            <Form.Label>Email Address <span className="text-danger">*</span></Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Enter email address"
+                                                value={values?.email}
+                                                onChange={e => setValues({...values, email: e.target.value})}
+                                                required
+                                            />
+                                            {touched?.email && errors?.email ? (
+                                                <Form.Text className="text-danger">{errors?.email}</Form.Text>
+                                            ) : (
+                                                ''
+                                            )}
+                                        </Form.Group>
+                                        <Form.Group as={Col} md="6" className="mb-3">
+                                            <Form.Label>Other Email</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Enter other email"
+                                                value={values?.email_other}
+                                                onChange={e => setValues({...values, email_other: e.target.value})}
+                                            />
+                                            {touched?.email_other && errors?.email_other ? (
+                                                <Form.Text className="text-danger">{errors?.email_other}</Form.Text>
                                             ) : (
                                                 ''
                                             )}

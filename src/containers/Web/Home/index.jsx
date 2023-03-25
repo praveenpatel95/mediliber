@@ -10,6 +10,8 @@ import IndexingSlider from "../../../components/IndexingSlider";
 import RecentEditorsSlider from "../../../components/RecentEditorsSlider";
 
 function Home() {
+    const isTrye = true;
+
     return (
         <HelmetProvider>
             <Helmet>

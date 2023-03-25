@@ -5,10 +5,10 @@ import Loader from "../../../../../components/Loader";
 
 function PageContent() {
     const {
-        isJournalEditorialBoardFetching,
-        isJournalEditorialBoardFetchingError,
+        isJournalReviewerBoardFetching,
+        isJournalReviewerBoardFetchingError,
         journalEditorialBoards,
-        journalDetail
+        journalReviewerBoards
     } = useSelector(state => state?.CommonJournalReducer);
 
     return (
@@ -21,19 +21,19 @@ function PageContent() {
                     </ListGroup>
                 </Col>
                 <Col sm={8} className="pb-5">
-                    <h1 className="mb-4">Editorial Board</h1>
+                    <h1 className="mb-4">Reviewer Board</h1>
 
                     <article id="#editorial" className="mb-4">
-                        {isJournalEditorialBoardFetching ?
+                        {isJournalReviewerBoardFetching ?
                             <div className="text-center my-5">
                                 <Loader/>
                             </div>
 
-                            : journalEditorialBoards?.length > 0 ?
+                            : journalReviewerBoards?.length > 0 ?
                                 <ul>
-                                    {journalEditorialBoards?.map((editorial, index) => (
+                                    {journalReviewerBoards?.map((reviewer, index) => (
                                         <li>
-                                            <b>{editorial?.first_name + " " + editorial?.last_name}</b>, {editorial?.affiliation}
+                                            <b>{reviewer?.first_name + " " + reviewer?.last_name}</b>, {reviewer?.affiliation}
                                         </li>
                                     ))
                                     }
@@ -42,8 +42,8 @@ function PageContent() {
                                 <h4>No data found</h4>
                         }
 
-                        {isJournalEditorialBoardFetchingError &&
-                            <h4 class="text-danger">{isJournalEditorialBoardFetchingError}</h4>
+                        {isJournalReviewerBoardFetchingError &&
+                            <h4 class="text-danger">{isJournalReviewerBoardFetchingError}</h4>
                         }
                     </article>
 

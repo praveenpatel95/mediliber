@@ -74,7 +74,7 @@ function ReviewerBoard({getReviewerBoard, deleteReviewerBoard}) {
                                         <tr>
                                             <th>#</th>
                                             <th>Name</th>
-                                            <th>Mobile No</th>
+                                            <th>Email ID</th>
                                             <th>Member No</th>
                                             <th>Affiliation</th>
                                             <th>Action</th>
@@ -85,7 +85,7 @@ function ReviewerBoard({getReviewerBoard, deleteReviewerBoard}) {
                                             <tr key={reviewer?.id}>
                                                 <td>{++index}</td>
                                                 <td>{reviewer?.first_name +" "+reviewer?.last_name}</td>
-                                                <td>{reviewer?.mobile_no}</td>
+                                                <td>{reviewer?.email}</td>
                                                 <td>{reviewer?.member_no}</td>
                                                 <td>{reviewer?.affiliation}</td>
                                                 <td>

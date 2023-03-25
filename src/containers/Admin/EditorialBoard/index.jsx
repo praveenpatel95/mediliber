@@ -75,7 +75,7 @@ function EditorialBoard({getEditorialBoard, deleteEditorialBoard}) {
                                             <th>#</th>
                                             <th>Photo</th>
                                             <th>Name</th>
-                                            <th>Mobile No</th>
+                                            <th>Email ID</th>
                                             <th>Member No</th>
                                             <th>Affiliation</th>
                                             <th>Action</th>
@@ -87,7 +87,7 @@ function EditorialBoard({getEditorialBoard, deleteEditorialBoard}) {
                                                 <td>{++index}</td>
                                                 <td><img src={editorial?.photo} height={50}/></td>
                                                 <td>{editorial?.first_name +" "+editorial?.last_name}</td>
-                                                <td>{editorial?.mobile_no}</td>
+                                                <td>{editorial?.email}</td>
                                                 <td>{editorial?.member_no}</td>
                                                 <td>{editorial?.affiliation}</td>
                                                 <td>

@@ -2,7 +2,7 @@ import React from "react";
 import {HelmetProvider} from "react-helmet-async";
 import {Helmet} from "react-helmet";
 import {Col, Container, Row} from "react-bootstrap";
-import BlogCard from "../../../components/BlogCard";
+import BlogCard from "../../../../components/BlogCard";
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowRight} from "@fortawesome/fontawesome-free-solid";

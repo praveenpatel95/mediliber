@@ -3,30 +3,30 @@ import {HelmetProvider} from "react-helmet-async";
 import {Helmet} from "react-helmet";
 import {Breadcrumb, Col, Container, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
-import SidebarSection from "../Common/SidebarSection";
-import AboutContent from "./Content";
+import SidebarSection from "../../Common/SidebarSection";
+import ApcContent from "./Content";
 
-function AboutJournal() {
+function APC() {
     const slug = 'my-web';
     return (
         <HelmetProvider>
             <Helmet>
-                <title>About</title>
+                <title>Article Processing Charges</title>
             </Helmet>
             <main className="py-3 mb-5">
                 <Container fluid>
                     <Row>
                         <Breadcrumb>
                             <Breadcrumb.Item linkAs={Link} linkProps={{to: `/journal/${slug}`}}>Journal Name</Breadcrumb.Item>
-                            <Breadcrumb.Item active>About this journal</Breadcrumb.Item>
+                            <Breadcrumb.Item active>Article Processing Charges</Breadcrumb.Item>
                         </Breadcrumb>
                     </Row>
                 </Container>
-                <section >
+                <section>
                     <Container fluid>
                         <Row>
-                            <Col sm={9} >
-                                <AboutContent/>
+                            <Col sm={9}>
+                                <ApcContent/>
                             </Col>
                             <Col sm={3}>
                                 <SidebarSection/>
@@ -41,4 +41,4 @@ function AboutJournal() {
     )
 }
 
-export default AboutJournal;
+export default APC;

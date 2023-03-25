@@ -32,7 +32,7 @@ function Header() {
 
                         <Nav>
                             <Nav.Link as={Link} to="/journals">Journals </Nav.Link>
-                            <Nav.Link as={Link} to="/publish-research">Publish with us</Nav.Link>
+                            <Nav.Link as={Link} to="/join-us">Join Us</Nav.Link>
                             <Nav.Link as={Link} to="/publishing-partnerships">Editorial Policies</Nav.Link>
                             <Nav.Link as={Link} to="/about-us">About us</Nav.Link>
                             <Nav.Link>Submit Manuscript </Nav.Link>

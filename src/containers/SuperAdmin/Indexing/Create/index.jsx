@@ -90,7 +90,7 @@ function IndexingCreate({createIndexing, getIndexing, updateIndexing}) {
     return (
         <HelmetProvider>
             <Helmet>
-                <title>{indexingId ? "Update Indexing" : "Create New Indexing"}</title>
+                <title>{indexingId ? "Update JournalCategory" : "Create New JournalCategory"}</title>
             </Helmet>
             <main className="py-4 bg-grey-lime">
                 <Container className="d-flex justify-content-between">
@@ -100,7 +100,7 @@ function IndexingCreate({createIndexing, getIndexing, updateIndexing}) {
                             <Breadcrumb.Item linkAs={Link}
                                              linkProps={{to: `/super-admin/indexing`}}>Indexings</Breadcrumb.Item>
                             <Breadcrumb.Item
-                                active>{indexingId ? "Update Indexing" : "Create New Indexing"}</Breadcrumb.Item>
+                                active>{indexingId ? "Update JournalCategory" : "Create New JournalCategory"}</Breadcrumb.Item>
                         </Breadcrumb>
                     </div>
                     <Button variant="primary" as={Link} to="/super-admin/indexing"><FontAwesomeIcon

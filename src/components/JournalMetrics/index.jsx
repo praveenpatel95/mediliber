@@ -1,32 +1,32 @@
 import React from "react";
 import {Card} from "react-bootstrap";
 
-function JournalMetrics() {
+function JournalMetrics({journal}) {
     return (
         <table className="table fs-14">
             <tr>
                 <td>Acceptance rate</td>
-                <th>26%</th>
+                <th>{journal?.acceptance_rate ? journal?.acceptance_rate+"%" : '-'}</th>
             </tr>
             <tr>
                 <td>Submission to final decision</td>
-                <th>76 days</th>
+                <th>{journal?.submission_final_decision ? journal?.submission_final_decision+" days" :'-'}</th>
             </tr>
             <tr>
                 <td>Acceptance to publication</td>
-                <th>12 days</th>
+                <th>{journal?.acceptance_publication ? journal?.acceptance_publication+" days" :'-'}</th>
             </tr>
             <tr>
                 <td>CiteScore</td>
-                <th>5.000</th>
+                <th>{journal?.citi_score ? journal?.citi_score :'-'}</th>
             </tr>
             <tr>
                 <td>Journal Citation Indicator</td>
-                <th>0.600</th>
+                <th>{journal?.citation_indicator ? journal?.citation_indicator :'-'}</th>
             </tr>
             <tr>
                 <td>Impact Factor</td>
-                <th>3.246</th>
+                <th>{journal?.impact_factor ? journal?.impact_factor :'-'}</th>
             </tr>
         </table>
 

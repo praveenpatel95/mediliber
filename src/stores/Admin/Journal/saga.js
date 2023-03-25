@@ -49,7 +49,6 @@ export function* updateJournal({payload}) {
 }
 
 export function* getPagesList({payload}) {
-    console.log("ok console")
     const token = localStorage.getItem("token");
     try {
         const response = yield call(api(token, null)

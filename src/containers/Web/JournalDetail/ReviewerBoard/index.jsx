@@ -4,16 +4,16 @@ import {Helmet} from "react-helmet";
 import {Breadcrumb, Col, Container, Row} from "react-bootstrap";
 import {Link, useParams} from "react-router-dom";
 import SidebarSection from "../Common/SidebarSection";
-import {getJournalEditorialBoard} from "../../../../stores/Common/Journal/actions";
+import {getJournalReviewerBoard} from "../../../../stores/Common/Journal/actions";
 import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
 import Content from "./Content";
 
-function JournalEditorBoard({getEditorialBoardList}) {
+function JournalReviewerBoard({getReviewerBoardList}) {
     let {journalSlug} = useParams();
     useEffect(() => {
         if (journalSlug) {
-            getEditorialBoardList(journalSlug);
+            getReviewerBoardList(journalSlug);
         }
     }, [journalSlug]);
 
@@ -23,14 +23,14 @@ function JournalEditorBoard({getEditorialBoardList}) {
     return (
         <HelmetProvider>
             <Helmet>
-                <title> {`${journalDetail?.name ? journalDetail?.name :''} editorial board`}</title>
+                <title> {`${journalDetail?.name ? journalDetail?.name :''} reviewer board`}</title>
             </Helmet>
             <main className="py-3 mb-5">
                 <Container fluid>
                     <Row>
                         <Breadcrumb>
                             <Breadcrumb.Item linkAs={Link} linkProps={{to: `/journal/${journalSlug}`}}>{journalDetail?.name}</Breadcrumb.Item>
-                            <Breadcrumb.Item active>Editorial Board</Breadcrumb.Item>
+                            <Breadcrumb.Item active>Reviewer Board</Breadcrumb.Item>
                         </Breadcrumb>
                     </Row>
                 </Container>
@@ -55,10 +55,10 @@ function JournalEditorBoard({getEditorialBoardList}) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        getEditorialBoardList: (slug) => dispatch(getJournalEditorialBoard(slug)),
+        getReviewerBoardList: (slug) => dispatch(getJournalReviewerBoard(slug)),
     }
 }
 
 const withConnect = connect(null, mapDispatchToProps);
 
-export default compose(withConnect)(JournalEditorBoard);
+export default compose(withConnect)(JournalReviewerBoard);

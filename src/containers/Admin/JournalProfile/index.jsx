@@ -42,6 +42,7 @@ function JournalProfile({fetchJournal, updateJournal, fetchJournalCategories}) {
         formData.append('citation_indicator', values.citation_indicator ? values?.citation_indicator : "")
         formData.append('impact_factor', values.impact_factor ? values?.impact_factor : "")
         formData.append('apc', values.apc ? values?.apc : "")
+        formData.append('apc_visible', values.apc_visible)
         if (values.banner) {
             formData.append('banner', values.banner)
         }
@@ -72,6 +73,7 @@ function JournalProfile({fetchJournal, updateJournal, fetchJournalCategories}) {
             citation_indicator: "",
             impact_factor: "",
             apc: "",
+            apc_visible: "Yes",
         },
         validationSchema: Yup.object().shape({
             journal_category_id: Yup.number().required('Journal category is required'),
@@ -84,6 +86,7 @@ function JournalProfile({fetchJournal, updateJournal, fetchJournalCategories}) {
             citation_indicator: Yup.string().notRequired().matches(/^\d*(\.\d{0,3})?$/, 'Enter only decimal number ex 1.223'),
             impact_factor: Yup.string().notRequired().matches(/^\d*(\.\d{0,3})?$/, 'Enter only decimal number ex 1.223'),
             apc: Yup.number().notRequired(),
+            apc_visible: Yup.string().required(),
         }),
         onSubmit,
     });
@@ -109,6 +112,7 @@ function JournalProfile({fetchJournal, updateJournal, fetchJournalCategories}) {
                 citation_indicator: journalData?.citation_indicator,
                 impact_factor: journalData?.impact_factor,
                 apc: journalData?.apc,
+                apc_visible: journalData?.apc_visible,
                 journal_category_id: journalData?.journal_category_id,
             })
         }
@@ -353,7 +357,7 @@ function JournalProfile({fetchJournal, updateJournal, fetchJournalCategories}) {
                                                 )}
                                             </Form.Group>
                                             <Form.Group as={Col} md="4" className="mb-3">
-                                                <Form.Label>APC</Form.Label>
+                                                <Form.Label>APC <small>(In Euro €)</small></Form.Label>
                                                 <Form.Control
                                                     type="number"
                                                     placeholder="Enter apc"
@@ -366,6 +370,37 @@ function JournalProfile({fetchJournal, updateJournal, fetchJournalCategories}) {
                                                 {touched?.apc && errors?.apc ? (
                                                     <Form.Text
                                                         className="text-danger">{errors?.apc}</Form.Text>
+                                                ) : (
+                                                    ''
+                                                )}
+                                            </Form.Group>
+                                            <Form.Group as={Col} md="6" className="mb-3">
+                                                <Form.Label>APC show on website</Form.Label>
+                                                <br/>
+                                                <Form.Check
+                                                    inline
+                                                    label="Yes"
+                                                    name="group1"
+                                                    type="radio"
+                                                    value="Yes"
+                                                    checked={values.apc_visible === "Yes"}
+                                                    onChange={e => setValues({...values, apc_visible: e.target.value})}
+                                                    required
+
+                                                />
+                                                <Form.Check
+                                                    inline
+                                                    label="No"
+                                                    name="group1"
+                                                    type="radio"
+                                                    value="No"
+                                                    checked={values.apc_visible === "No"}
+                                                    onChange={e => setValues({...values, apc_visible: e.target.value})}
+                                                    required
+
+                                                />
+                                                {touched?.apc_visible && errors?.apc_visible ? (
+                                                    <Form.Text className="text-danger">{errors?.apc_visible}</Form.Text>
                                                 ) : (
                                                     ''
                                                 )}

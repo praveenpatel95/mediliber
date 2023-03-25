@@ -6,27 +6,24 @@ import JournalMetrics from "../../../../../components/JournalMetrics";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChartLine} from "@fortawesome/fontawesome-free-solid";
 
-function Banner(){
+function Banner({journalDetail}){
     const  bannerImage = process.env.PUBLIC_URL + "/assets/images/banner/bg_2.png";
    return (
-       <section style={{backgroundImage: `url(${bannerImage})`, width: "100%", height: "300px"}} className="journal-banner">
+       <section style={{backgroundImage: `url(${journalDetail?.banner})`, width: "100%", height: "300px"}} className="journal-banner">
             <Container>
                 <Row>
                     <Col sm={8} className="pt-5 content">
-                        <h6>Recently Published</h6>
-                        <h5>A Modified RBF Collocation Method for Solving the Convection-Diffusion Problems</h5>
-                        <p>Nissaya Chuathong</p>
-                        <Link to="">Read the full article</Link>
+                        <div dangerouslySetInnerHTML={{ __html: journalDetail?.banner_content }}></div>
                     </Col>
                     <Col sm={4} className="pt-5">
                         <Card>
                             <Card.Body>
                                 <h5><FontAwesomeIcon icon={faChartLine} /> &nbsp;Journal metrics</h5>
-                                <JournalMetrics />
+                                <JournalMetrics journal={journalDetail}/>
                             </Card.Body>
                             <Card.Footer className="bg_theme_color text-white">
                                 <span>APC</span>
-                                <span className="float-end">10$</span>
+                                <span className="float-end">{journalDetail?.apc_visible === "Yes"? "€"+journalDetail?.apc:"-"}</span>
                             </Card.Footer>
                         </Card>
                     </Col>

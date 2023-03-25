@@ -28,7 +28,6 @@ function ReviewerBoardCreate({createReviewerBoard, getReviewerBoard, updateRevie
         isReviewerBoardCreatingError,
         isReviewerBoardCreated,
 
-        isReviewerBoardGetFetching,
         isReviewerBoardGetFetchingError,
         reviewerBoard,
 
@@ -40,6 +39,8 @@ function ReviewerBoardCreate({createReviewerBoard, getReviewerBoard, updateRevie
         formData.append('first_name', values.first_name)
         formData.append('last_name', values.last_name)
         formData.append('affiliation', values.affiliation)
+        formData.append('email', values.email)
+        formData.append('email_other', values.email_other ? values.email_other :'')
         formData.append('mobile_no', values.mobile_no)
         formData.append('earning_policy', values.earning_policy)
         formData.append('whatsapp_no', values.whatsapp_no ? values.whatsapp_no : "")
@@ -86,6 +87,8 @@ function ReviewerBoardCreate({createReviewerBoard, getReviewerBoard, updateRevie
             first_name: "",
             last_name: "",
             affiliation: "",
+            email: "",
+            email_other: "",
             mobile_no: "",
             whatsapp_no: "",
             certificate: "",
@@ -101,7 +104,7 @@ function ReviewerBoardCreate({createReviewerBoard, getReviewerBoard, updateRevie
             first_name: Yup.string().required('First name is required'),
             last_name: Yup.string().required('Last name is required'),
             affiliation: Yup.string().required('Affiliation is required'),
-            mobile_no: Yup.string().required('Mobile no is required'),
+            email: Yup.string().required('Email address is required'),
             earning_policy: Yup.string().required('Earning policy is required'),
         }),
         onSubmit,
@@ -115,6 +118,8 @@ function ReviewerBoardCreate({createReviewerBoard, getReviewerBoard, updateRevie
                     first_name: reviewerBoard?.first_name,
                     last_name: reviewerBoard?.last_name,
                     affiliation: reviewerBoard?.affiliation,
+                    email: reviewerBoard?.email,
+                    email_other: reviewerBoard?.email_other,
                     mobile_no: reviewerBoard?.mobile_no,
                     whatsapp_no: reviewerBoard?.whatsapp_no,
                     earning_policy: reviewerBoard?.earning_policy,
@@ -209,6 +214,37 @@ function ReviewerBoardCreate({createReviewerBoard, getReviewerBoard, updateRevie
                                             ''
                                         )}
                                     </Form.Group>
+                                    <Row>
+                                        <Form.Group as={Col} md="6" className="mb-3">
+                                            <Form.Label>Email Address <span className="text-danger">*</span></Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Enter email address"
+                                                value={values?.email}
+                                                onChange={e => setValues({...values, email: e.target.value})}
+                                                required
+                                            />
+                                            {touched?.email && errors?.email ? (
+                                                <Form.Text className="text-danger">{errors?.email}</Form.Text>
+                                            ) : (
+                                                ''
+                                            )}
+                                        </Form.Group>
+                                        <Form.Group as={Col} md="6" className="mb-3">
+                                            <Form.Label>Other Email</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Enter other email"
+                                                value={values?.email_other}
+                                                onChange={e => setValues({...values, email_other: e.target.value})}
+                                            />
+                                            {touched?.email_other && errors?.email_other ? (
+                                                <Form.Text className="text-danger">{errors?.email_other}</Form.Text>
+                                            ) : (
+                                                ''
+                                            )}
+                                        </Form.Group>
+                                    </Row>
                                     <Row>
                                         <Form.Group as={Col} md="6" className="mb-3">
                                             <Form.Label>Mobile No <span className="text-danger">*</span></Form.Label>

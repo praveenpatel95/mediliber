@@ -1,0 +1,6 @@
+/**
+ * Get List
+ */
+export const GET_INDEXING_LIST = "web/GET_INDEXING_LIST";
+export const GET_INDEXING_LIST_SUCCESS = "web/GET_INDEXING_LIST_SUCCESS";
+export const GET_INDEXING_LIST_FAILURE = "web/GET_INDEXING_LIST_FAILURE";

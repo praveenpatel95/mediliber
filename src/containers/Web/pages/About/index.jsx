@@ -7,7 +7,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faCaretRight,
 } from "@fortawesome/fontawesome-free-solid";
-import JoinSection from "../../../components/JoinSection";
+import JoinSection from "../../../../components/JoinSection";
 
 function AboutUs() {
     return (

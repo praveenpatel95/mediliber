@@ -6,11 +6,13 @@ import JournalCategoryReducer from "./SuperAdmin/JournalCategory/reducer";
 import JournalReducer from "./SuperAdmin/Journals/reducer";
 import JournalUserReducer from "./SuperAdmin/JournalUsers/reducer";
 import AdminJournalReducer from "./Admin/Journal/reducer";
-import WebJournalCategoryReducer from "./Common/JournalCategory/reducer";
+import WebJournalCategoryReducer from "./Common/Indexing/reducer";
 import AdminJournalPageReducer from "./Admin/JournalPage/reducer";
 import AdminEditorialBoardReducer from "./Admin/EditorialBoard/reducer";
 import AdminReviewerBoardReducer from "./Admin/ReviewerBoard/reducer";
 import IndexingReducer from "./SuperAdmin/Indexing/reducer";
+import CommonJournalReducer from "./Common/Journal/reducer";
+import WebIndexingReducer from "./Common/Indexing/reducer";
 
 
 const authPersistConfig = {
@@ -30,6 +32,8 @@ const rootReducer = combineReducers({
             AdminEditorialBoardReducer: AdminEditorialBoardReducer,
             AdminReviewerBoardReducer: AdminReviewerBoardReducer,
             IndexingReducer: IndexingReducer,
+            CommonJournalReducer: CommonJournalReducer,
+            WebIndexingReducer: WebIndexingReducer,
         }
     )
 ;

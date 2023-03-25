@@ -1,14 +1,41 @@
-import React from "react";
+import React, {useEffect} from "react";
 import JournalMenu from "../Common/JournalMenu";
-import {Outlet} from "react-router-dom";
+import {Outlet, useParams} from "react-router-dom";
 import JournalHead from "./JournalHead";
+import {connect, useSelector} from "react-redux";
+import {getJournalDetailBySlug} from "../../../../stores/Common/Journal/actions";
+import {compose} from "redux";
 
-export default function JournalHeader() {
+function JournalHeader({getJournalDetail}) {
+
+    let {journalSlug} = useParams();
+
+    useEffect(() => {
+        if (journalSlug) {
+            getJournalDetail(journalSlug);
+        }
+
+    }, [journalSlug]);
+
+    const {journalDetail} =
+        useSelector(state => state?.CommonJournalReducer);
+
     return (
         <>
-            <JournalHead journalName="Journal of science"/>
-            <JournalMenu/>
+            <JournalHead journalName={journalDetail?.name}/>
+            <JournalMenu
+                journalSlug={journalSlug}
+            />
             <Outlet/>
         </>
     )
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+        getJournalDetail: (slug) => dispatch(getJournalDetailBySlug(slug))
+    }
+}
+
+const withConnect = connect(null, mapDispatchToProps);
+export default compose(withConnect)(JournalHeader);

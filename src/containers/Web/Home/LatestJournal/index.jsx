@@ -1,14 +1,25 @@
-import React from "react";
-import {Card, Col, Container, Row} from "react-bootstrap";
+import React, {useEffect} from "react";
+import {Col, Container, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowRight} from "@fortawesome/fontawesome-free-solid";
 import JournalCardSimple from "../../../../components/JournalCardSimple";
 import {Link} from "react-router-dom";
-import JournalMetrics from "../../../../components/JournalMetrics";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import {journalFeaturedList} from "../../../../stores/Common/Journal/actions";
+import {connect, useSelector} from "react-redux";
+import {compose} from "redux";
+import Loader from "../../../../components/Loader";
 
-function LatestJournal(props) {
+function LatestJournal({getFeaturedJournals, deviceType}) {
+    //const {getFeaturedJournals} = props.getFeaturedJournals;
+    useEffect(() => {
+        getFeaturedJournals();
+    }, []);
+
+    const {isJournalFeaturedListFetching, journalFeaturedList} =
+    useSelector(state => state?.CommonJournalReducer);
+
     const responsive = {
         desktop: {
             breakpoint: {max: 3000, min: 1024},
@@ -44,6 +55,10 @@ function LatestJournal(props) {
                 </Row>
 
                 <Row className="mt-3">
+                    {isJournalFeaturedListFetching ?
+                   <Loader />
+                    :
+
                     <Carousel
                         swipeable={false}
                         draggable={false}
@@ -58,16 +73,17 @@ function LatestJournal(props) {
                         transitionDuration={100}
                         containerClass="carousel-container"
                         removeArrowOnDeviceType={["tablet", "mobile"]}
-                        deviceType={props.deviceType}
+                        deviceType={deviceType}
                         dotListClass="custom-dot-list-style"
                         itemClass="carousel-item-padding-40-px"
                     >
-                        {[2, 3, 4, 5, 6, 7, 8].map((journal, index) => (
+                        {journalFeaturedList?.length && journalFeaturedList?.map((journal, index) => (
                             <div className="me-3">
                                 <JournalCardSimple journal={journal}/>
                             </div>
                         ))}
                     </Carousel>
+                    }
                 </Row>
             </Container>
 
@@ -75,4 +91,10 @@ function LatestJournal(props) {
     )
 }
 
-export default LatestJournal;
+function mapDispatchToProps(dispatch){
+    return {
+        getFeaturedJournals: () => dispatch(journalFeaturedList())
+    }
+}
+const withConnect = connect(null, mapDispatchToProps);
+export default compose(withConnect)(LatestJournal);
