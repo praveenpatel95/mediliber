@@ -13,6 +13,8 @@ import AdminReviewerBoardReducer from "./Admin/ReviewerBoard/reducer";
 import IndexingReducer from "./SuperAdmin/Indexing/reducer";
 import CommonJournalReducer from "./Common/Journal/reducer";
 import WebIndexingReducer from "./Common/Indexing/reducer";
+import WebpageReducer from "./SuperAdmin/WebPage/reducer";
+import OtherPageReducer from "./SuperAdmin/OtherlPage/reducer";
 
 
 const authPersistConfig = {
@@ -34,6 +36,8 @@ const rootReducer = combineReducers({
             IndexingReducer: IndexingReducer,
             CommonJournalReducer: CommonJournalReducer,
             WebIndexingReducer: WebIndexingReducer,
+            WebpageReducer: WebpageReducer,
+            OtherPageReducer: OtherPageReducer,
         }
     )
 ;

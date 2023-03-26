@@ -11,6 +11,10 @@ import UpdateProfile from "../containers/Auth/UpdateProfile";
 import UpdatePassword from "../containers/Auth/UpdatePassword";
 import Indexing from "../containers/SuperAdmin/Indexing";
 import IndexingCreate from "../containers/SuperAdmin/Indexing/Create";
+import MainPage from "../containers/SuperAdmin/Pages/MainPage";
+import MainPageEdit from "../containers/SuperAdmin/Pages/MainPage/Update";
+import OtherPages from "../containers/SuperAdmin/Pages/OtherPages";
+import OtherPageEdit from "../containers/SuperAdmin/Pages/OtherPages/Edit";
 
 export default [
 
@@ -34,5 +38,11 @@ export default [
         <Route path='indexing' element={<Indexing/>}/>
         <Route path='indexing/create' element={<IndexingCreate/>}/>
         <Route path='indexing/edit/:indexingId' element={<IndexingCreate/>}/>
+
+        <Route path='main-pages' element={<MainPage/>}/>
+        <Route path='main-page/edit/:pageId' element={<MainPageEdit/>}/>
+
+        <Route path='other-pages' element={<OtherPages/>}/>
+        <Route path='other-page/edit/:pageId' element={<OtherPageEdit/>}/>
     </Route>
 ];

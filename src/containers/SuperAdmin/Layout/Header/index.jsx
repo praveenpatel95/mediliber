@@ -54,7 +54,14 @@ function Header() {
                                 </NavDropdown.Item>
                             </NavDropdown>
                             <Nav.Link as={Link} to="/super-admin/indexing">Indexing</Nav.Link>
-
+                            <NavDropdown title="Pages">
+                                <NavDropdown.Item as={Link} to="/super-admin/main-pages">
+                                    Main Pages
+                                </NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/super-admin/other-pages">
+                                    Other pages
+                                </NavDropdown.Item>
+                            </NavDropdown>
                         </Nav>
                         <Nav >
                             <NavDropdown title="My Account">

@@ -11,6 +11,8 @@ import ReviewerBoardSaga from "./Admin/ReviewerBoard/saga";
 import IndexingSaga from "./SuperAdmin/Indexing/saga";
 import WebJournalSaga from "./Common/Journal/saga";
 import WebIndexingSaga from "./Common/Indexing/saga";
+import WebpageSaga from "./SuperAdmin/WebPage/saga";
+import OtherPageSaga from "./SuperAdmin/OtherlPage/saga";
 
 export default function* rootSaga() {
     yield all([
@@ -26,5 +28,7 @@ export default function* rootSaga() {
         IndexingSaga(),
         WebJournalSaga(),
         WebIndexingSaga(),
+        WebpageSaga(),
+        OtherPageSaga(),
     ]);
 }
