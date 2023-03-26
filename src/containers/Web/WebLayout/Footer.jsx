@@ -31,14 +31,14 @@ function Footer() {
                     <Col sm="3">
                         <Nav className="flex-column">
                             <Nav.Link as={Link} to="/journals">Journals</Nav.Link>
-                            <Nav.Link>Article Processing Charges</Nav.Link>
-                            <Nav.Link>Print editions</Nav.Link>
+                            <Nav.Link as={Link} to="/article-publication-charges">Article Processing Charges</Nav.Link>
+                            <Nav.Link as={Link} to="/print-editions">Print editions</Nav.Link>
                         </Nav>
                     </Col>
                     <Col sm="3">
                         <Nav className="flex-column">
                             <Nav.Link as={Link} to="/privacy-policy">Privacy Policy</Nav.Link>
-                            <Nav.Link as={Link} to="/terms">Terms of Service</Nav.Link>
+                            <Nav.Link as={Link} to="/terms-of-services">Terms of Service</Nav.Link>
                             <Nav.Link as={Link} to="/responsible-disclosure-policy">Responsible Disclosure Policy</Nav.Link>
                         </Nav>
                     </Col>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {HelmetProvider} from "react-helmet-async";
 import {Helmet} from "react-helmet";
 import Banner from "./Banner";
@@ -7,46 +7,70 @@ import Container from "react-bootstrap/Container";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFileAlt, faSearch, faUser} from "@fortawesome/fontawesome-free-solid";
 import {Link} from "react-router-dom";
+import {getMainPageDetail} from "../../../../stores/Common/Pages/actions";
+import {connect, useSelector} from "react-redux";
+import {compose} from "redux";
+import Loader1 from "../../../../components/Loader1";
 
-function PublishResearch() {
+function JoinUs({getPageDetail}) {
+    const pageSlug = 'join-us';
+    useEffect(() => {
+        if (pageSlug) {
+            getPageDetail(pageSlug);
+        }
+    }, [pageSlug]);
+    const {
+        isMainPageDetailFetching,
+        isMainPageDetailFetchingError,
+        mainPageData
+    } = useSelector(state => state?.WebPageReducer);
+
     return (
         <HelmetProvider>
             <Helmet>
-                <title>Article Publish with us</title>
+                <title>{mainPageData?.page_title}</title>
             </Helmet>
-            <main>
-                <Banner/>
-                <section  className="py-5">
-                    <Container>
-                        <Row>
-                            <Col sm={8}>
-                                <h2>How you can get involved</h2>
-                                <p>When you publish, edit, or peer review with a Mediliber journal, you become part of a
-                                    community that will support you and enable you to share research with a relevant
-                                    global audience. This way, together, we maximize the impact, reach, and visibility
-                                    of your research.
+            {isMainPageDetailFetching ?
+                <div className="text-center my-5">
+                    <Loader1/>
+                </div>
+                :
+                <main>
 
-                                </p>
-                                <p>Our journals service niche and broader communities of researchers all over the world.
-                                    They would not be the useful and impactful publications they are without the expert
-                                    researchers that publish in them.</p>
-                                <p>Here, you can find out everything you need to know about being an Author, Editor or
-                                    Reviewer at a Mediliber journal.</p>
-                            </Col>
-                            <Col sm={4}>
-                                <ListGroup className="fs-6 list2">
-                                    <ListGroup.Item as={Link} to="/authors"><FontAwesomeIcon icon={faUser} className="w-25"/> Becoming an Author</ListGroup.Item>
-                                    <ListGroup.Item ><FontAwesomeIcon icon={faFileAlt} className="w-25"/> Being an Editor</ListGroup.Item>
-                                    <ListGroup.Item ><FontAwesomeIcon icon={faSearch} className="w-25"/> For Reviewers</ListGroup.Item>
-                                </ListGroup>
-                            </Col>
-                        </Row>
-                    </Container>
-                </section>
+                    <Banner pageData={mainPageData}/>
+                    <section className="py-5">
+                        <Container>
+                            <Row>
+                                <Col sm={8}>
+                                    <div dangerouslySetInnerHTML={{__html: mainPageData?.page_content}}></div>
+                                </Col>
+                                <Col sm={4}>
+                                    <ListGroup className="fs-6 list2">
+                                        <ListGroup.Item as={Link} to="/authors"><FontAwesomeIcon icon={faUser}
+                                                                                                 className="w-25"/> Becoming
+                                            an Author</ListGroup.Item>
+                                        <ListGroup.Item><FontAwesomeIcon icon={faFileAlt} className="w-25"/> Being an
+                                            Editor</ListGroup.Item>
+                                        <ListGroup.Item><FontAwesomeIcon icon={faSearch} className="w-25"/> For
+                                            Reviewers</ListGroup.Item>
+                                    </ListGroup>
+                                </Col>
+                            </Row>
+                        </Container>
+                    </section>
 
-            </main>
+                </main>
+            }
         </HelmetProvider>
     )
 }
 
-export default PublishResearch;
+function mapDispatchToProps(dispatch) {
+    return {
+        getPageDetail: (slug) => dispatch(getMainPageDetail(slug)),
+    }
+}
+
+const withConnect = connect(null, mapDispatchToProps);
+export default compose(withConnect)(JoinUs);
+

@@ -13,6 +13,7 @@ import WebJournalSaga from "./Common/Journal/saga";
 import WebIndexingSaga from "./Common/Indexing/saga";
 import WebpageSaga from "./SuperAdmin/WebPage/saga";
 import OtherPageSaga from "./SuperAdmin/OtherlPage/saga";
+import WebPagesSaga from "./Common/Pages/saga";
 
 export default function* rootSaga() {
     yield all([
@@ -30,5 +31,6 @@ export default function* rootSaga() {
         WebIndexingSaga(),
         WebpageSaga(),
         OtherPageSaga(),
+        WebPagesSaga(),
     ]);
 }

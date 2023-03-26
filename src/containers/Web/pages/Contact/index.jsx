@@ -1,19 +1,34 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {HelmetProvider} from "react-helmet-async";
 import {Helmet} from "react-helmet";
 import HeadBanner from "./HeadBanner";
 import {Col, Container, Row} from "react-bootstrap";
 import {faCaretRight, faEnvelope, faEnvelopeOpen, faHome} from "@fortawesome/fontawesome-free-solid";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {getMainPageDetail} from "../../../../stores/Common/Pages/actions";
+import {connect, useSelector} from "react-redux";
+import {compose} from "redux";
 
-function Contact() {
+function Contact({getPageDetail}) {
+    const pageSlug = 'contact-us';
+    useEffect(() => {
+        if (pageSlug) {
+            getPageDetail(pageSlug);
+        }
+    }, [pageSlug]);
+    const {
+        isMainPageDetailFetching,
+        isMainPageDetailFetchingError,
+        mainPageData
+    } = useSelector(state => state?.WebPageReducer);
+
     return (
         <HelmetProvider>
             <Helmet>
-                <title>Contact us</title>
+                <title>{mainPageData?.title}</title>
             </Helmet>
             <main>
-                <HeadBanner/>
+                <HeadBanner pageData={mainPageData}/>
                 <section className="py-5">
                     <Container>
                         <Row>
@@ -63,5 +78,11 @@ function Contact() {
         </HelmetProvider>
     )
 }
+function mapDispatchToProps(dispatch) {
+    return {
+        getPageDetail: (slug) => dispatch(getMainPageDetail(slug)),
+    }
+}
 
-export default Contact;
+const withConnect = connect(null, mapDispatchToProps);
+export default compose(withConnect)(Contact);

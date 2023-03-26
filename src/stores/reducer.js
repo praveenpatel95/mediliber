@@ -15,6 +15,7 @@ import CommonJournalReducer from "./Common/Journal/reducer";
 import WebIndexingReducer from "./Common/Indexing/reducer";
 import WebpageReducer from "./SuperAdmin/WebPage/reducer";
 import OtherPageReducer from "./SuperAdmin/OtherlPage/reducer";
+import WebPageReducer from "./Common/Pages/reducer";
 
 
 const authPersistConfig = {
@@ -38,6 +39,7 @@ const rootReducer = combineReducers({
             WebIndexingReducer: WebIndexingReducer,
             WebpageReducer: WebpageReducer,
             OtherPageReducer: OtherPageReducer,
+            WebPageReducer: WebPageReducer,
         }
     )
 ;

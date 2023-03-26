@@ -12,16 +12,14 @@ import {
 } from "@fortawesome/fontawesome-free-solid";
 import './style.scss'
 
-function Banner() {
-    const bannerImage = process.env.PUBLIC_URL + "/assets/images/banner/bg_7.png";
+function Banner({pageData}) {
     return (
-        <section style={{backgroundImage: `url(${bannerImage})`}}
+        <section style={{backgroundImage: `url(${pageData?.banner})`}}
                  className="publish_banner">
             <Container>
                 <Row className="content">
                     <Col sm={8}>
-                        <h1>Publish with us</h1>
-                        <h5>Placing the researcher at the heart of everything we do.</h5>
+                        <div dangerouslySetInnerHTML={{ __html: pageData?.banner_content }}></div>
                         <Button variant="secondaryDark" size="lg" as={Link} to="/journals" className="mt-3 py-3 text-white px-5">
                             Our journals <FontAwesomeIcon className="ps-3" icon={faArrowAltCircleRight}/>
                         </Button>

@@ -48,11 +48,11 @@ export default function JournalMenu({journalSlug}) {
                                         Guidelines</NavDropdown.Item>
                                 </Col>
                                 <Col xs="12" md="4" className="text-left">
-                                    <NavDropdown.Item as={Link} to={`/journal/${journalSlug}/author-guidelines`}>Reviewer
+                                    <NavDropdown.Item as={Link} to={`/reviewers`}>Reviewer
                                         Guidelines</NavDropdown.Item>
                                 </Col>
                                 <Col xs="12" md="4" className="text-left">
-                                    <NavDropdown.Item as={Link} to={`/journal/${journalSlug}/author-guidelines`}>Editors
+                                    <NavDropdown.Item as={Link} to={`/editors`}>Editors
                                         Guidelines</NavDropdown.Item>
                                 </Col>
                             </Row>

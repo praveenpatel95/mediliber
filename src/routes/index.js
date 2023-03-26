@@ -24,6 +24,7 @@ import Admin from "./admin";
 import Page from "../containers/Web/JournalDetail/Page";
 import JournalEditorBoard from "../containers/Web/JournalDetail/EditorBoard";
 import JournalReviewerBoard from "../containers/Web/JournalDetail/ReviewerBoard";
+import OtherPages from "../containers/Web/pages/OtherPages";
 
 export default function MainRouter() {
     return (
@@ -31,20 +32,28 @@ export default function MainRouter() {
             <Route path="/" element={<WebLayout/>}>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/journals" element={<Journals/>}/>
-                <Route path="publication-ethics" element={<PublicationEthics/>}/>
+                <Route path="join-us" element={<JoinUs/>}/>
+                <Route path="about-us" element={<About/>}/>
+                <Route path="contact" element={<Contact/>}/>
+                <Route path="publishing-partnerships" element={<PublishingPartnership/>}/>
+                <Route path="/:pageSlug" element={<OtherPages/>}/>
+
+
                 <Route path="what-are-article-processing-charges" element={<AboutAPC/>}/>
                 <Route path="waiver-policy" element={<WaiverPolicy/>}/>
-                <Route path="join-us" element={<JoinUs/>}/>
-                <Route path="authors" element={<Authors/>}/>
-                <Route path="publishing-partnerships" element={<PublishingPartnership/>}/>
-                <Route path="about-us" element={<About/>}/>
+
+
+
                 <Route path="blog" element={<Blog/>}/>
-                <Route path="contact" element={<Contact/>}/>
-                <Route path="editors" element={<Editors/>}/>
-                <Route path="reviewers" element={<Reviewers/>}/>
-                <Route path="privacy-policy" element={<PrivacyPolicy/>}/>
-                <Route path="terms" element={<TermsService/>}/>
-                <Route path="responsible-disclosure-policy" element={<ResponsibleDisclosurePolicy/>}/>
+
+                {/*<Route path="publication-ethics" element={<PublicationEthics/>}/>*/}
+                {/*<Route path="editors" element={<Editors/>}/>*/}
+                {/*<Route path="reviewers" element={<Reviewers/>}/>*/}
+                {/*<Route path="privacy-policy" element={<PrivacyPolicy/>}/>*/}
+                {/*<Route path="authors" element={<Authors/>}/>*/}
+
+                {/*<Route path="terms" element={<TermsService/>}/>*/}
+                {/*<Route path="responsible-disclosure-policy" element={<ResponsibleDisclosurePolicy/>}/>*/}
 
                 <Route path="journal/:journalSlug" element={<JournalHeader/>}>
                     <Route path="" element={<JournalDetailHome/>}/>
