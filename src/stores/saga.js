@@ -14,6 +14,8 @@ import WebIndexingSaga from "./Common/Indexing/saga";
 import WebpageSaga from "./SuperAdmin/WebPage/saga";
 import OtherPageSaga from "./SuperAdmin/OtherlPage/saga";
 import WebPagesSaga from "./Common/Pages/saga";
+import OrganizationSaga from "./SuperAdmin/Organization/saga";
+import WebOrganizationSaga from "./Common/Organization/saga";
 
 export default function* rootSaga() {
     yield all([
@@ -32,5 +34,7 @@ export default function* rootSaga() {
         WebpageSaga(),
         OtherPageSaga(),
         WebPagesSaga(),
+        OrganizationSaga(),
+        WebOrganizationSaga(),
     ]);
 }

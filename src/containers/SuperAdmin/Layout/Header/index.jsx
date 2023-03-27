@@ -53,7 +53,6 @@ function Header() {
                                     Journal Access user
                                 </NavDropdown.Item>
                             </NavDropdown>
-                            <Nav.Link as={Link} to="/super-admin/indexing">Indexing</Nav.Link>
                             <NavDropdown title="Pages">
                                 <NavDropdown.Item as={Link} to="/super-admin/main-pages">
                                     Main Pages
@@ -62,6 +61,8 @@ function Header() {
                                     Other pages
                                 </NavDropdown.Item>
                             </NavDropdown>
+                            <Nav.Link as={Link} to="/super-admin/indexing">Indexing</Nav.Link>
+                            <Nav.Link as={Link} to="/super-admin/organization">Organizations</Nav.Link>
                         </Nav>
                         <Nav >
                             <NavDropdown title="My Account">

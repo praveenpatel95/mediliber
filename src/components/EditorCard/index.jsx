@@ -7,10 +7,10 @@ function EditorCard({editor}) {
     return (
         <Card>
             <Card.Body className="text-center">
-                <Image src={`${process.env.PUBLIC_URL}/assets/images/editors/${editor.id}.jpg`}
+                <Image src={`${editor?.photo}`}
                        className="rounded-circle" style={{width: '100px', height: '100px'}}/>
-                <h5 as={Link} to="/">{editor?.name}</h5>
-                <Card.Title as={Link} to="/" className="fs-6 text-secondaryDark">{editor?.education}</Card.Title>
+                <h5 >{editor?.name}</h5>
+                <Card.Title className="fs-6 text-secondaryDark">{editor?.affiliation}</Card.Title>
             </Card.Body>
         </Card>
 

@@ -14,7 +14,7 @@ import {
     getJournalPageDetailFailure,
     getJournalPageDetailSuccess,
     getJournalReviewerBoardFailure,
-    getJournalReviewerBoardSuccess,
+    getJournalReviewerBoardSuccess, getRecentEditorialBoardFailure, getRecentEditorialBoardSuccess,
     journalFeaturedListFailure,
     journalFeaturedListSuccess,
 
@@ -26,7 +26,7 @@ import {
     JOURNAL_EDITORIAL_BOARD,
     JOURNAL_FEATURED_LIST,
     JOURNAL_LIST,
-    JOURNAL_PAGE_DETAIL, JOURNAL_REVIEWER_BOARD
+    JOURNAL_PAGE_DETAIL, JOURNAL_REVIEWER_BOARD, RECENT_EDITORIAL_BOARD
 } from "./constant";
 
 export function* getJournalList({payload}) {
@@ -115,6 +115,19 @@ export function* getReviewerBoardBySlug({payload}) {
     }
 }
 
+//get recently editorial board
+export function* getRecentEditorialBoard({payload}) {
+    try {
+        const response = yield call(api(null, null)
+                .get, `/v1/boardmember/recent`,
+            payload
+        );
+        yield put(getRecentEditorialBoardSuccess(response?.data));
+
+    } catch (e) {
+        yield put(getRecentEditorialBoardFailure(e.response?.data?.message));
+    }
+}
 /**
  *
  * Saga flow
@@ -138,6 +151,9 @@ export function* getEditorialBoardFlow() {
 export function* getReviewerBoardBySlugFlow() {
     yield takeLatest(JOURNAL_REVIEWER_BOARD, getReviewerBoardBySlug);
 }
+export function* getRecentlyEditorialBoardFlow() {
+    yield takeLatest(RECENT_EDITORIAL_BOARD, getRecentEditorialBoard);
+}
 
 
 export default function* WebJournalSaga() {
@@ -148,5 +164,6 @@ export default function* WebJournalSaga() {
         getPageDetailFlow(),
         getEditorialBoardFlow(),
         getReviewerBoardBySlugFlow(),
+        getRecentlyEditorialBoardFlow(),
     ]);
 }

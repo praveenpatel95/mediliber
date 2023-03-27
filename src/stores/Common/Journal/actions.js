@@ -99,3 +99,19 @@ export const getJournalReviewerBoardFailure = (error) => ({
     type: types.JOURNAL_REVIEWER_BOARD_FAILURE,
     error
 });
+
+//GET RECENT EDITORIAL BOARD
+export const getRecentEditorialBoard = (payload) => ({
+    type: types.RECENT_EDITORIAL_BOARD,
+    payload
+});
+
+export const getRecentEditorialBoardSuccess = (payload) => ({
+    type: types.RECENT_EDITORIAL_BOARD_SUCCESS,
+    payload
+});
+
+export const getRecentEditorialBoardFailure = (error) => ({
+    type: types.RECENT_EDITORIAL_BOARD_FAILURE,
+    error
+});

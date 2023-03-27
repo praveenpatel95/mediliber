@@ -25,6 +25,11 @@ export const initialState = {
     isJournalReviewerBoardFetchingError: null,
     journalReviewerBoards: [],
 
+    //Recently editorial board member
+    isRecentEditorialBoardFetching: false,
+    isRecentEditorialBoardFetchingError: null,
+    recentEditorialBoards: [],
+
 }
 
 const CommonJournalReducer = (state = initialState, action) => {
@@ -155,6 +160,28 @@ const CommonJournalReducer = (state = initialState, action) => {
                 ...state,
                 isJournalReviewerBoardFetching: false,
                 isJournalReviewerBoardFetchingError: action.error,
+            }
+
+        //recent editorial board list
+        case types.RECENT_EDITORIAL_BOARD:
+            return {
+                ...state,
+                isRecentEditorialBoardFetching: true,
+                isRecentEditorialBoardFetchingError: null,
+                journalEditorialBoards: []
+            }
+        case types.RECENT_EDITORIAL_BOARD_SUCCESS:
+            return {
+                ...state,
+                isRecentEditorialBoardFetching: false,
+                recentEditorialBoards: action.payload
+
+            }
+        case types.RECENT_EDITORIAL_BOARD_FAILURE:
+            return {
+                ...state,
+                isRecentEditorialBoardFetching: false,
+                isRecentEditorialBoardFetchingError: action.error,
             }
         default:
             return state;

@@ -1,39 +1,36 @@
 import React, {useEffect} from "react";
 import {Col, Container, Image, Row} from "react-bootstrap";
 import Carousel from "react-multi-carousel";
-import EditorCard from "../EditorCard";
+import {getOrganizationList} from "../../stores/Common/Organization/actions";
 import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
-import {getRecentEditorialBoard} from "../../stores/Common/Journal/actions";
-import CommonJournalReducer from "../../stores/Common/Journal/reducer";
 import Loader1 from "../Loader1";
 
-function RecentEditorsSlider({getEditroial, deviceType}) {
+function OrganizationSlider({getOrganization, deviceType}) {
     useEffect(() => {
-        getEditroial();
+        getOrganization();
     }, []);
 
     const {
-        isRecentEditorialBoardFetching,
-        isRecentEditorialBoardFetchingError,
-        recentEditorialBoards
-    } = useSelector(state => state?.CommonJournalReducer);
-
+        isOrganizationListFetching,
+        isOrganizationListFetchingError,
+        organizationList
+    } = useSelector(state => state?.WebOrganizationReducer);
     const responsive = {
         desktop: {
             breakpoint: {max: 3000, min: 1024},
-            items: 4,
+            items: 8,
             partialVisibilityGutter: 40,
             slidesToSlide: 1
         },
         tablet: {
             breakpoint: {max: 1024, min: 464},
-            items: 2,
+            items: 4,
             slidesToSlide: 1 // optional, default to 1.
         },
         mobile: {
             breakpoint: {max: 464, min: 0},
-            items: 1,
+            items: 3,
             slidesToSlide: 1 // optional, default to 1.
         }
     };
@@ -43,7 +40,7 @@ function RecentEditorsSlider({getEditroial, deviceType}) {
             <Container className="py-5">
                 <Row>
                     <Col sm={12}>
-                        <h2 className="text-center mb-3">Recently joined board members</h2>
+                        <h2 className="text-center mb-3">Recently Connected Organization</h2>
                     </Col>
                 </Row>
 
@@ -55,24 +52,27 @@ function RecentEditorsSlider({getEditroial, deviceType}) {
                         ssr={true} // means to render carousel on server-side.
                         infinite={true}
                         autoPlay={true}
-                        autoPlaySpeed={4000}
+                        autoPlaySpeed={2000}
                         keyBoardControl={true}
-                        customTransition="all .9"
-                        transitionDuration={5000}
+                        customTransition="all .5"
+                        transitionDuration={2000}
                         containerClass="carousel-container"
-                        removeArrowOnDeviceType={["tablet", "mobile"]}
+                        removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
                         deviceType={deviceType}
-                        itemClass=""
+                        itemClass="carousel-item-padding-40-px"
                     >
-                        {isRecentEditorialBoardFetching ?
+                        {isOrganizationListFetching ?
                             <div className="text-center">
                                 <Loader1/>
                             </div>
-                            : recentEditorialBoards?.map((editor) => (
-                            <div className="me-3" key={editor?.id}>
-                                <EditorCard editor={editor}/>
-                            </div>
-                        ))}
+                            : organizationList?.map((organization) => (
+                                <div key={organization?.id}>
+                                    <Image src={organization?.image}
+                                           alt={organization?.name}
+                                           style={{height: '50px', width: '120px'}}
+                                    />
+                                </div>
+                            ))}
                     </Carousel>
                 </Row>
             </Container>
@@ -83,9 +83,9 @@ function RecentEditorsSlider({getEditroial, deviceType}) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        getEditroial: () => dispatch(getRecentEditorialBoard())
+        getOrganization: () => dispatch(getOrganizationList())
     }
 }
 
 const withConnect = connect(null, mapDispatchToProps)
-export default compose(withConnect)(RecentEditorsSlider);
+export default compose(withConnect)(OrganizationSlider);

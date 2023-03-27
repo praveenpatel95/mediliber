@@ -8,6 +8,7 @@ import AboutShort from "./AboutShort";
 import LatestArticle from "./LatestArticle";
 import IndexingSlider from "../../../components/IndexingSlider";
 import RecentEditorsSlider from "../../../components/RecentEditorsSlider";
+import OrganizationSlider from "../../../components/OrganizationSlider";
 
 function Home() {
     const isTrye = true;
@@ -25,6 +26,7 @@ function Home() {
                 <JoinSection />
                 <AboutShort />
                 <RecentEditorsSlider />
+                <OrganizationSlider />
             </main>
         </HelmetProvider>
     )
