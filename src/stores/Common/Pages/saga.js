@@ -17,7 +17,6 @@ import {
 
 //main page data
 export function* getMainPageData({payload}) {
-    console.log("payload", payload)
     try {
         const response = yield call(api(null, null)
                 .get, `/v1/main-page/${payload}`,

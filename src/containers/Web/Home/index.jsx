@@ -11,7 +11,6 @@ import RecentEditorsSlider from "../../../components/RecentEditorsSlider";
 import OrganizationSlider from "../../../components/OrganizationSlider";
 
 function Home() {
-    const isTrye = true;
 
     return (
         <HelmetProvider>

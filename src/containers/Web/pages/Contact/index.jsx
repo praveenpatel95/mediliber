@@ -3,24 +3,34 @@ import {HelmetProvider} from "react-helmet-async";
 import {Helmet} from "react-helmet";
 import HeadBanner from "./HeadBanner";
 import {Col, Container, Row} from "react-bootstrap";
-import {faCaretRight, faEnvelope, faEnvelopeOpen, faHome} from "@fortawesome/fontawesome-free-solid";
+import {faEnvelopeOpen, faHome} from "@fortawesome/fontawesome-free-solid";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {getMainPageDetail} from "../../../../stores/Common/Pages/actions";
 import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
+import {getWebSetting} from "../../../../stores/Common/WebSetting/actions";
 
-function Contact({getPageDetail}) {
+function Contact({getPageDetail, getWebSettingDetail}) {
     const pageSlug = 'contact-us';
     useEffect(() => {
         if (pageSlug) {
             getPageDetail(pageSlug);
         }
     }, [pageSlug]);
+
+    useEffect(() => {
+        getWebSettingDetail();
+    }, []);
+
     const {
         isMainPageDetailFetching,
         isMainPageDetailFetchingError,
         mainPageData
     } = useSelector(state => state?.WebPageReducer);
+
+    const {
+        webSettingDetail,
+    } = useSelector(state => state?.WebSettingReducer);
 
     return (
         <HelmetProvider>
@@ -39,9 +49,7 @@ function Contact({getPageDetail}) {
                                                                  className="fa-4x text-secondaryDark"/></Col>
                                     <Col sm={9}>
                                         <h5>Mediliber publication group</h5>
-                                        <p>61, Block tower, Chankypuri <br/>
-                                            Sector 4, Dehli, 313001<br/>
-                                            India
+                                        <p>{webSettingDetail?.address}
                                         </p>
                                     </Col>
                                 </Row>
@@ -56,16 +64,16 @@ function Contact({getPageDetail}) {
                                                                  className="fa-4x text-secondaryDark"/></Col>
                                     <Col sm={9}>
                                         <p><strong>For Help</strong><br/>
-                                            <a href="mailto:help@mediliber.com"
-                                               className="text-secondaryDark">help@mediliber.com</a>
+                                            <a href={`mailto:${webSettingDetail?.help_email}`}
+                                               className="text-secondaryDark">{webSettingDetail?.help_email}</a>
                                         </p>
                                         <p><strong>For query</strong><br/>
-                                            <a href="mailto:query@mediliber.com"
-                                               className="text-secondaryDark">query@mediliber.com</a>
+                                            <a href={`mailto:${webSettingDetail?.query_email}`}
+                                               className="text-secondaryDark">{webSettingDetail?.query_email}</a>
                                         </p>
                                         <p><strong>Special Issues</strong><br/>
-                                            <a href="mailto:specialissues@mediliber.com"
-                                               className="text-secondaryDark">specialissues@mediliber.com</a>
+                                            <a href={`mailto:${webSettingDetail?.special_issue_email}`}
+                                               className="text-secondaryDark">{webSettingDetail?.special_issue_email}</a>
                                         </p>
 
                                     </Col>
@@ -78,9 +86,11 @@ function Contact({getPageDetail}) {
         </HelmetProvider>
     )
 }
+
 function mapDispatchToProps(dispatch) {
     return {
         getPageDetail: (slug) => dispatch(getMainPageDetail(slug)),
+        getWebSettingDetail: (data) => dispatch(getWebSetting(data)),
     }
 }
 

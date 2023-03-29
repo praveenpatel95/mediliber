@@ -5,13 +5,13 @@ import ReactQuill from "react-quill";
 import {getJournalProfile, updateJournalProfile} from "../../../stores/Admin/Journal/actions";
 import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import Loader from "../../../components/Loader";
 import useValidator from "../../../utils/useValidator";
 import * as Yup from "yup";
 import {webJournalCategoryList} from "../../../stores/Common/JournalCategory/actions";
 
-function JournalProfile({fetchJournal, updateJournal, fetchJournalCategories}) {
+function JournalProfile({fetchJournal, updateJournal, getJournalCategories}) {
     const {
         isJournalFetching,
         isJournalFetchingError,
@@ -26,12 +26,12 @@ function JournalProfile({fetchJournal, updateJournal, fetchJournalCategories}) {
         journalCategories
     } = useSelector(state => state?.WebJournalCategoryReducer);
 
-
+    const [bannerContent, setBannerContent] = useState('');
     const onSubmit = () => {
         const formData = new FormData();
         formData.append('journal_category_id', values.journal_category_id)
         formData.append('name', values.journal_name)
-        formData.append('banner_content', values.banner_content)
+        formData.append('banner_content', bannerContent)
         formData.append('journal_profile', values.journal_profile ? values.journal_profile : "")
         formData.append('editor_spotlight', values.editor_spotlight ? values.editor_spotlight : "")
         formData.append('special_issues', values.special_issues ? values?.special_issues : "")
@@ -62,7 +62,6 @@ function JournalProfile({fetchJournal, updateJournal, fetchJournalCategories}) {
             journal_category_id: "",
             journal_name: "",
             banner: "",
-            banner_content: "",
             journal_profile: "",
             editor_spotlight: "",
             special_issues: "",
@@ -78,7 +77,6 @@ function JournalProfile({fetchJournal, updateJournal, fetchJournalCategories}) {
         validationSchema: Yup.object().shape({
             journal_category_id: Yup.number().required('Journal category is required'),
             journal_name: Yup.string().required('Journal name is required'),
-            banner_content: Yup.string().required('Banner content is required'),
             acceptance_rate: Yup.number().notRequired(),
             submission_final_decision: Yup.number().notRequired(),
             acceptance_publication: Yup.number().notRequired(),
@@ -92,7 +90,11 @@ function JournalProfile({fetchJournal, updateJournal, fetchJournalCategories}) {
     });
 
     useEffect(() => {
-        fetchJournalCategories();
+        console.log("yes");
+        getJournalCategories();
+    }, []);
+
+    useEffect(() => {
         fetchJournal();
     }, []);
 
@@ -101,7 +103,6 @@ function JournalProfile({fetchJournal, updateJournal, fetchJournalCategories}) {
             setValues({
                 ...values,
                 journal_name: journalData.name,
-                banner_content: journalData.banner_content,
                 journal_profile: journalData.journal_profile,
                 editor_spotlight: journalData.editor_spotlight,
                 special_issues: journalData.special_issues,
@@ -114,7 +115,8 @@ function JournalProfile({fetchJournal, updateJournal, fetchJournalCategories}) {
                 apc: journalData?.apc,
                 apc_visible: journalData?.apc_visible,
                 journal_category_id: journalData?.journal_category_id,
-            })
+            });
+            setBannerContent(journalData?.banner_content)
         }
     }, [journalData]);
 
@@ -205,13 +207,9 @@ function JournalProfile({fetchJournal, updateJournal, fetchJournalCategories}) {
                                         <Form.Group as={Col} md="12" className="mb-3">
                                             <Form.Label>Banner Content <span
                                                 className="text-danger">*</span></Form.Label>
-                                            <ReactQuill theme="snow" value={values?.banner_content}
-                                                        onChange={(e) => setValues({...values, banner_content: e})}/>
-                                            {touched?.banner_content && errors?.banner_content ? (
-                                                <Form.Text className="text-danger">{errors?.banner_content}</Form.Text>
-                                            ) : (
-                                                ''
-                                            )}
+                                            <ReactQuill theme="snow" value={bannerContent}
+                                                        onChange={(e) => setBannerContent(e)}/>
+
                                         </Form.Group>
                                         <Form.Group as={Col} md="12" className="mb-3">
                                             <Form.Label>Profile Content</Form.Label>
@@ -449,7 +447,7 @@ function mapDispatchToProps(dispatch) {
     return {
         fetchJournal: (data) => dispatch(getJournalProfile(data)),
         updateJournal: (data) => dispatch(updateJournalProfile(data)),
-        fetchJournalCategories: (data) => dispatch(webJournalCategoryList(data)),
+        getJournalCategories: (data) => dispatch(webJournalCategoryList(data)),
     };
 }
 

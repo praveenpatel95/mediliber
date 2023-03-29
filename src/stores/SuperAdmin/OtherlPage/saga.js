@@ -52,7 +52,6 @@ export function* updatePageDetail({payload}) {
                 .post, `/v1/super-admin/otherpage/${payload.id}?_method=put`,
             payload.formData
         );
-        console.log("ye", response?.data)
         yield put(updateOtherPageDetailSuccess(response?.data));
 
     } catch (e) {

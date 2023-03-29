@@ -17,6 +17,7 @@ import OtherPages from "../containers/SuperAdmin/Pages/OtherPages";
 import OtherPageEdit from "../containers/SuperAdmin/Pages/OtherPages/Edit";
 import Organization from "../containers/SuperAdmin/organization";
 import OrganizationCreate from "../containers/SuperAdmin/organization/Create";
+import WebSetting from "../containers/SuperAdmin/WebSetting";
 
 export default [
 
@@ -50,5 +51,7 @@ export default [
 
         <Route path='other-pages' element={<OtherPages/>}/>
         <Route path='other-page/edit/:pageId' element={<OtherPageEdit/>}/>
+
+        <Route path='web-setting' element={<WebSetting/>}/>
     </Route>
 ];

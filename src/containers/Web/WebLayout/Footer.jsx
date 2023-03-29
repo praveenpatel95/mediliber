@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Col, Container, Nav, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
@@ -7,8 +7,19 @@ import {
     faTwitterSquare,
 } from "@fortawesome/free-brands-svg-icons";
 import {Link} from "react-router-dom";
+import {getWebSetting} from "../../../stores/Common/WebSetting/actions";
+import {connect, useSelector} from "react-redux";
+import {compose} from "redux";
 
-function Footer() {
+function Footer({getDetail}) {
+    useEffect(() => {
+        getDetail();
+    }, []);
+
+    const {
+        webSettingDetail,
+    } = useSelector(state => state?.WebSettingReducer);
+
     return (
         <footer className="bg-theme-color text-white footer ">
             <Container className="pt-5">
@@ -45,10 +56,10 @@ function Footer() {
                     <Col sm="2">
                         <h4 className="text-white">Follow us: </h4>
                         <Nav>
-                            <Nav.Link><FontAwesomeIcon className="fa-2x" icon={faFacebookSquare}/> </Nav.Link>
-                            <Nav.Link><FontAwesomeIcon className="fa-2x" icon={faTwitterSquare}/></Nav.Link>
-                            <Nav.Link><FontAwesomeIcon className="fa-2x" icon={faLinkedin}/></Nav.Link>
-                            <Nav.Link><FontAwesomeIcon className="fa-2x" icon={faSquareYoutube}/></Nav.Link>
+                            <Nav.Link href={webSettingDetail?.fb_link} target="_blank"><FontAwesomeIcon className="fa-2x" icon={faFacebookSquare}/> </Nav.Link>
+                            <Nav.Link href={webSettingDetail?.twitter_link} target="_blank"><FontAwesomeIcon className="fa-2x" icon={faTwitterSquare}/></Nav.Link>
+                            <Nav.Link href={webSettingDetail?.linkedin_link} target="_blank"><FontAwesomeIcon className="fa-2x" icon={faLinkedin}/></Nav.Link>
+                            <Nav.Link href={webSettingDetail?.youtube_link} target="_blank"><FontAwesomeIcon className="fa-2x" icon={faSquareYoutube}/></Nav.Link>
                         </Nav>
 
                     </Col>
@@ -66,4 +77,11 @@ function Footer() {
     )
 }
 
-export default Footer;
+function mapDispatchToProps(dispatch) {
+    return {
+        getDetail: (data) => dispatch(getWebSetting(data)),
+    };
+}
+
+const withConnect = connect(null, mapDispatchToProps);
+export default compose(withConnect)(Footer);

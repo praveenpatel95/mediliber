@@ -1,11 +1,10 @@
 import React, {useEffect} from "react";
-import {Col, Container, Image, Row} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import EditorCard from "../EditorCard";
 import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
 import {getRecentEditorialBoard} from "../../stores/Common/Journal/actions";
-import CommonJournalReducer from "../../stores/Common/Journal/reducer";
 import Loader1 from "../Loader1";
 
 function RecentEditorsSlider({getEditroial, deviceType}) {
@@ -22,7 +21,7 @@ function RecentEditorsSlider({getEditroial, deviceType}) {
     const responsive = {
         desktop: {
             breakpoint: {max: 3000, min: 1024},
-            items: 4,
+            items: 5,
             partialVisibilityGutter: 40,
             slidesToSlide: 1
         },

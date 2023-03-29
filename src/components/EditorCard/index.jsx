@@ -1,16 +1,21 @@
 import React from "react";
 import {Card, Image} from "react-bootstrap";
-import {Link} from "react-router-dom";
-
+import './style.scss'
 function EditorCard({editor}) {
 
     return (
-        <Card>
-            <Card.Body className="text-center">
+        <Card id="editorial_board">
+            <Card.Body className="text-center single-team">
                 <Image src={`${editor?.photo}`}
-                       className="rounded-circle" style={{width: '100px', height: '100px'}}/>
-                <h5 >{editor?.name}</h5>
-                <Card.Title className="fs-6 text-secondaryDark">{editor?.affiliation}</Card.Title>
+                       className="team-thumb" />
+                <div className="overlay_content">
+
+                    <div className="content_detail">
+                        <h5>{editor?.first_name +" "+editor?.last_name}</h5>
+                        <p className="text-dark">{editor?.email}</p>
+                        <p>{editor?.affiliation}</p>
+                    </div>
+                </div>
             </Card.Body>
         </Card>
 

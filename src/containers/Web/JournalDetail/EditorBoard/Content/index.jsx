@@ -1,5 +1,5 @@
 import React from "react";
-import {Col, Container, ListGroup, Row} from "react-bootstrap";
+import {Card, CardImg, Col, Container, Image, ListGroup, Row} from "react-bootstrap";
 import {useSelector} from "react-redux";
 import Loader from "../../../../../components/Loader";
 
@@ -30,14 +30,23 @@ function PageContent() {
                             </div>
 
                             : journalEditorialBoards?.length > 0 ?
-                                <ul>
+                                <div>
                                     {journalEditorialBoards?.map((editorial, index) => (
-                                        <li>
-                                            <b>{editorial?.first_name + " " + editorial?.last_name}</b>, {editorial?.affiliation}
-                                        </li>
+                                        <div className="d-flex mb-4">
+                                            <div>
+                                                <Image roundedCircle src={editorial?.photo} style={{height:'70px', width:'70px'}} />
+                                            </div>
+                                            <div className="ps-3">
+                                                <b>{editorial?.first_name + " " + editorial?.last_name}</b>
+                                                <br />
+                                                <small>{editorial?.affiliation}</small><br />
+                                                <b>India</b>
+                                            </div>
+                                        </div>
                                     ))
                                     }
-                                </ul>
+                                </div>
+
                                 :
                                 <h4>No data found</h4>
                         }
