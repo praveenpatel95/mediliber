@@ -39,6 +39,7 @@ function ReviewerBoardCreate({createReviewerBoard, getReviewerBoard, updateRevie
         formData.append('first_name', values.first_name)
         formData.append('last_name', values.last_name)
         formData.append('affiliation', values.affiliation)
+        formData.append('country', values.country)
         formData.append('email', values.email)
         formData.append('email_other', values.email_other ? values.email_other :'')
         formData.append('mobile_no', values.mobile_no)
@@ -87,6 +88,7 @@ function ReviewerBoardCreate({createReviewerBoard, getReviewerBoard, updateRevie
             first_name: "",
             last_name: "",
             affiliation: "",
+            country: "",
             email: "",
             email_other: "",
             mobile_no: "",
@@ -104,6 +106,7 @@ function ReviewerBoardCreate({createReviewerBoard, getReviewerBoard, updateRevie
             first_name: Yup.string().required('First name is required'),
             last_name: Yup.string().required('Last name is required'),
             affiliation: Yup.string().required('Affiliation is required'),
+            country: Yup.string().required('Country is required'),
             email: Yup.string().required('Email address is required'),
             earning_policy: Yup.string().required('Earning policy is required'),
         }),
@@ -118,6 +121,7 @@ function ReviewerBoardCreate({createReviewerBoard, getReviewerBoard, updateRevie
                     first_name: reviewerBoard?.first_name,
                     last_name: reviewerBoard?.last_name,
                     affiliation: reviewerBoard?.affiliation,
+                    country: reviewerBoard?.country,
                     email: reviewerBoard?.email,
                     email_other: reviewerBoard?.email_other,
                     mobile_no: reviewerBoard?.mobile_no,
@@ -199,21 +203,38 @@ function ReviewerBoardCreate({createReviewerBoard, getReviewerBoard, updateRevie
                                             )}
                                         </Form.Group>
                                     </Row>
-                                    <Form.Group as={Col} md="12" className="mb-3">
-                                        <Form.Label>Affiliation <span className="text-danger">*</span></Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Enter affiliation"
-                                            value={values?.affiliation}
-                                            onChange={e => setValues({...values, affiliation: e.target.value})}
-                                            required
-                                        />
-                                        {touched?.affiliation && errors?.affiliation ? (
-                                            <Form.Text className="text-danger">{errors?.affiliation}</Form.Text>
-                                        ) : (
-                                            ''
-                                        )}
-                                    </Form.Group>
+                                   <Row>
+                                       <Form.Group as={Col} md="8" className="mb-3">
+                                           <Form.Label>Affiliation <span className="text-danger">*</span></Form.Label>
+                                           <Form.Control
+                                               type="text"
+                                               placeholder="Enter affiliation"
+                                               value={values?.affiliation}
+                                               onChange={e => setValues({...values, affiliation: e.target.value})}
+                                               required
+                                           />
+                                           {touched?.affiliation && errors?.affiliation ? (
+                                               <Form.Text className="text-danger">{errors?.affiliation}</Form.Text>
+                                           ) : (
+                                               ''
+                                           )}
+                                       </Form.Group>
+                                       <Form.Group as={Col} md="4" className="mb-3">
+                                           <Form.Label>Country <span className="text-danger">*</span></Form.Label>
+                                           <Form.Control
+                                               type="text"
+                                               placeholder="Enter country"
+                                               value={values?.country}
+                                               onChange={e => setValues({...values, country: e.target.value})}
+                                               required
+                                           />
+                                           {touched?.country && errors?.country ? (
+                                               <Form.Text className="text-danger">{errors?.country}</Form.Text>
+                                           ) : (
+                                               ''
+                                           )}
+                                       </Form.Group>
+                                   </Row>
                                     <Row>
                                         <Form.Group as={Col} md="6" className="mb-3">
                                             <Form.Label>Email Address <span className="text-danger">*</span></Form.Label>

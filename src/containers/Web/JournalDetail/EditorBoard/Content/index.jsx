@@ -40,7 +40,7 @@ function PageContent() {
                                                 <b>{editorial?.first_name + " " + editorial?.last_name}</b>
                                                 <br />
                                                 <small>{editorial?.affiliation}</small><br />
-                                                <b>India</b>
+                                                <b>{editorial?.country}</b>
                                             </div>
                                         </div>
                                     ))

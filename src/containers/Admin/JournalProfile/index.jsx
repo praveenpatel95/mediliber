@@ -43,6 +43,7 @@ function JournalProfile({fetchJournal, updateJournal, getJournalCategories}) {
         formData.append('impact_factor', values.impact_factor ? values?.impact_factor : "")
         formData.append('apc', values.apc ? values?.apc : "")
         formData.append('apc_visible', values.apc_visible)
+        formData.append('twitter_feed', values.twitter_feed ? values.twitter_feed : "")
         if (values.banner) {
             formData.append('banner', values.banner)
         }
@@ -73,6 +74,7 @@ function JournalProfile({fetchJournal, updateJournal, getJournalCategories}) {
             impact_factor: "",
             apc: "",
             apc_visible: "Yes",
+            twitter_feed: "",
         },
         validationSchema: Yup.object().shape({
             journal_category_id: Yup.number().required('Journal category is required'),
@@ -90,7 +92,6 @@ function JournalProfile({fetchJournal, updateJournal, getJournalCategories}) {
     });
 
     useEffect(() => {
-        console.log("yes");
         getJournalCategories();
     }, []);
 
@@ -115,6 +116,7 @@ function JournalProfile({fetchJournal, updateJournal, getJournalCategories}) {
                 apc: journalData?.apc,
                 apc_visible: journalData?.apc_visible,
                 journal_category_id: journalData?.journal_category_id,
+                twitter_feed: journalData?.twitter_feed,
             });
             setBannerContent(journalData?.banner_content)
         }
@@ -372,6 +374,7 @@ function JournalProfile({fetchJournal, updateJournal, getJournalCategories}) {
                                                     ''
                                                 )}
                                             </Form.Group>
+
                                             <Form.Group as={Col} md="6" className="mb-3">
                                                 <Form.Label>APC show on website</Form.Label>
                                                 <br/>
@@ -404,6 +407,24 @@ function JournalProfile({fetchJournal, updateJournal, getJournalCategories}) {
                                                 )}
                                             </Form.Group>
                                         </Row>
+                                        <Form.Group as={Col} md="12" className="mb-3">
+                                            <Form.Label>Twitter feed link</Form.Label>
+                                            <Form.Control
+                                                type="url"
+                                                placeholder="Enter twitter link for feed"
+                                                value={values?.twitter_feed}
+                                                onChange={e => setValues({
+                                                    ...values,
+                                                    twitter_feed: e.target.value
+                                                })}
+                                            />
+                                            {touched?.twitter_feed && errors?.twitter_feed ? (
+                                                <Form.Text
+                                                    className="text-danger">{errors?.twitter_feed}</Form.Text>
+                                            ) : (
+                                                ''
+                                            )}
+                                        </Form.Group>
                                         {isJournalUpdatingError &&
                                             <Form.Text className="text-danger">{isJournalUpdatingError}</Form.Text>}
 

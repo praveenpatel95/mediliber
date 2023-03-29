@@ -33,7 +33,7 @@ function PageContent() {
                                 <ul>
                                     {journalReviewerBoards?.map((reviewer, index) => (
                                         <li>
-                                            <b>{reviewer?.first_name + " " + reviewer?.last_name}</b>, {reviewer?.affiliation}
+                                            <b>{reviewer?.first_name + " " + reviewer?.last_name}</b>, {reviewer?.affiliation}, <b>{reviewer?.country}</b>
                                         </li>
                                     ))
                                     }
