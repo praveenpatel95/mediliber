@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPencilAlt} from "@fortawesome/fontawesome-free-solid";
 import {connect, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {compose} from "redux";
 import {webpageList} from "../../../../stores/SuperAdmin/WebPage/actions";
 import moment from "moment/moment";

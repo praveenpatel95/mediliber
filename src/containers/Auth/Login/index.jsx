@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import {connect, useDispatch, useSelector} from "react-redux";
 import {login} from "../../../stores/Auth/actions";
 import {compose} from "redux";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 
 function Login({callLogin}) {

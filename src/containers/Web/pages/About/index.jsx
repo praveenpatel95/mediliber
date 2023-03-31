@@ -3,10 +3,7 @@ import {HelmetProvider} from "react-helmet-async";
 import {Helmet} from "react-helmet";
 import HeadBanner from "./HeadBanner";
 import {Col, Container, Image, Row} from "react-bootstrap";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-    faCaretRight,
-} from "@fortawesome/fontawesome-free-solid";
+
 import JoinSection from "../../../../components/JoinSection";
 import {getMainPageDetail} from "../../../../stores/Common/Pages/actions";
 import {connect, useSelector} from "react-redux";

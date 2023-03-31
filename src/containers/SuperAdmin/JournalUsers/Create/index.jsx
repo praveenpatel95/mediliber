@@ -1,7 +1,7 @@
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import Container from "react-bootstrap/Container";
 import {Breadcrumb, Button, Card, Col, Form, Row, Spinner} from "react-bootstrap";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft} from "@fortawesome/fontawesome-free-solid";
 import useValidator from "../../../../utils/useValidator";

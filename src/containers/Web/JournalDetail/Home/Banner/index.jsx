@@ -1,6 +1,5 @@
 import React from "react";
 import {Card, Col, Container, Row} from "react-bootstrap";
-import {Link} from "react-router-dom";
 import './style.scss'
 import JournalMetrics from "../../../../../components/JournalMetrics";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -9,7 +8,8 @@ import {faChartLine} from "@fortawesome/fontawesome-free-solid";
 function Banner({journalDetail}){
     const  bannerImage = process.env.PUBLIC_URL + "/assets/images/banner/bg_2.png";
    return (
-       <section style={{backgroundImage: `url(${journalDetail?.banner})`, width: "100%", height: "300px"}} className="journal-banner">
+       <section style={{backgroundImage: `url(${journalDetail?.banner})`}}
+                className="journal-banner">
             <Container>
                 <Row>
                     <Col sm={8} className="pt-5 content">

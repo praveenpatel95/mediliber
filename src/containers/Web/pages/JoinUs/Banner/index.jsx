@@ -1,14 +1,9 @@
 import React from "react";
-import {Button, Col, Container, ListGroup, Row} from "react-bootstrap";
+import {Button, Col, Container, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faArrowAltCircleRight,
-    faArrowRight,
-    faFileAlt,
-    faFileArchive, faSearch, faSignInAlt,
-    faUpload, faUser,
-    faUsers
 } from "@fortawesome/fontawesome-free-solid";
 import './style.scss'
 

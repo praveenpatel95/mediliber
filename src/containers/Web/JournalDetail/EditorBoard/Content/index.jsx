@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, CardImg, Col, Container, Image, ListGroup, Row} from "react-bootstrap";
+import {Col, Container, Image, ListGroup, Row} from "react-bootstrap";
 import {useSelector} from "react-redux";
 import Loader from "../../../../../components/Loader";
 

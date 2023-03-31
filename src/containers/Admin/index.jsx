@@ -2,7 +2,6 @@ import {Outlet} from "react-router-dom";
 import {useSelector} from "react-redux";
 import Header from "./Layout/Header";
 import Protected from "../Auth/Protected/Protected";
-import {useEffect, useState} from "react";
 
 function AdminLayout() {
     const {

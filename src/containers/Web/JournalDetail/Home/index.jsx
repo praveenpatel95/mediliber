@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {HelmetProvider} from "react-helmet-async";
 import {Helmet} from "react-helmet";
 import {Col, Container, Row} from "react-bootstrap";
@@ -16,13 +16,6 @@ import Loader from "../../../../components/Loader";
 
 function JournalDetailHome({getJournalDetail}) {
     let {journalSlug} = useParams();
-
-    // useEffect(() => {
-    //     if (journalSlug) {
-    //         getJournalDetail(journalSlug);
-    //     }
-    //
-    // }, [journalSlug]);
 
     const {isJournalDetailFetching, isJournalDetailFetchingError, journalDetail} =
         useSelector(state => state?.CommonJournalReducer);

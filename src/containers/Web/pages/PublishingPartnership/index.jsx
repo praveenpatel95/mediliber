@@ -2,10 +2,7 @@ import React, {useEffect} from "react";
 import {HelmetProvider} from "react-helmet-async";
 import {Helmet} from "react-helmet";
 import HeadBanner from "../Contact/HeadBanner";
-import { Col, Container, Row} from "react-bootstrap";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCaretRight,
-} from "@fortawesome/fontawesome-free-solid";
+import {Container} from "react-bootstrap";
 import {getMainPageDetail} from "../../../../stores/Common/Pages/actions";
 import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
@@ -18,8 +15,6 @@ function PublishingPartnership({getPageDetail}) {
         }
     }, [pageSlug]);
     const {
-        isMainPageDetailFetching,
-        isMainPageDetailFetchingError,
         mainPageData
     } = useSelector(state => state?.WebPageReducer);
 
