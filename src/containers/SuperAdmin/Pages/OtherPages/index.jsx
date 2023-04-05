@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPencilAlt} from "@fortawesome/fontawesome-free-solid";
 import moment from "moment/moment";
-import {getOtherPages} from "../../../../stores/SuperAdmin/OtherlPage/actions";
+import {getOtherPages} from "../../../../stores/SuperAdmin/OtherPage/actions";
 import Loader from "../../../../components/Loader";
 
 function OtherPages({getPages}) {

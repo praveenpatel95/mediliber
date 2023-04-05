@@ -18,6 +18,8 @@ import OtherPageEdit from "../containers/SuperAdmin/Pages/OtherPages/Edit";
 import Organization from "../containers/SuperAdmin/organization";
 import OrganizationCreate from "../containers/SuperAdmin/organization/Create";
 import WebSetting from "../containers/SuperAdmin/WebSetting";
+import TempArticle from "../containers/SuperAdmin/TempArticle";
+import TempArticleCreate from "../containers/SuperAdmin/TempArticle/Create";
 
 export default [
 
@@ -53,5 +55,9 @@ export default [
         <Route path='other-page/edit/:pageId' element={<OtherPageEdit/>}/>
 
         <Route path='web-setting' element={<WebSetting/>}/>
+
+        <Route path='temp-article' element={<TempArticle/>}/>
+        <Route path='temp-article/create' element={<TempArticleCreate/>}/>
+        <Route path='temp-article/edit/:articleId' element={<TempArticleCreate/>}/>
     </Route>
 ];

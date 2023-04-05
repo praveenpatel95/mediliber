@@ -8,7 +8,7 @@ import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
 import {useEffect, useState} from "react";
 import ReactQuill from 'react-quill';
-import {getOtherPageDetail, updateOtherPageDetail} from "../../../../../stores/SuperAdmin/OtherlPage/actions";
+import {getOtherPageDetail, updateOtherPageDetail} from "../../../../../stores/SuperAdmin/OtherPage/actions";
 import Loader from "../../../../../components/Loader";
 
 function OtherPageEdit({getPageDetail, updatePageDetail}) {

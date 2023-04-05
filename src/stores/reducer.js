@@ -13,12 +13,13 @@ import IndexingReducer from "./SuperAdmin/Indexing/reducer";
 import CommonJournalReducer from "./Common/Journal/reducer";
 import WebIndexingReducer from "./Common/Indexing/reducer";
 import WebpageReducer from "./SuperAdmin/WebPage/reducer";
-import OtherPageReducer from "./SuperAdmin/OtherlPage/reducer";
+import OtherPageReducer from "./SuperAdmin/OtherPage/reducer";
 import WebPageReducer from "./Common/Pages/reducer";
 import OrganizationReducer from "./SuperAdmin/Organization/reducer";
 import WebOrganizationReducer from "./Common/Organization/reducer";
 import WebSettingReducer from "./Common/WebSetting/reducer";
 import WebJournalCategoryReducer from "./Common/JournalCategory/reducer";
+import TempArticleReducer from "./SuperAdmin/TempArticle/reducer";
 
 
 const authPersistConfig = {
@@ -46,6 +47,7 @@ const rootReducer = combineReducers({
             OrganizationReducer: OrganizationReducer,
             WebOrganizationReducer: WebOrganizationReducer,
             WebSettingReducer: WebSettingReducer,
+            TempArticleReducer: TempArticleReducer,
         }
     )
 ;

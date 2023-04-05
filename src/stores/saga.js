@@ -11,12 +11,13 @@ import IndexingSaga from "./SuperAdmin/Indexing/saga";
 import WebJournalSaga from "./Common/Journal/saga";
 import WebIndexingSaga from "./Common/Indexing/saga";
 import WebpageSaga from "./SuperAdmin/WebPage/saga";
-import OtherPageSaga from "./SuperAdmin/OtherlPage/saga";
+import OtherPageSaga from "./SuperAdmin/OtherPage/saga";
 import WebPagesSaga from "./Common/Pages/saga";
 import OrganizationSaga from "./SuperAdmin/Organization/saga";
 import WebOrganizationSaga from "./Common/Organization/saga";
 import WebSettingSaga from "./Common/WebSetting/saga";
 import WebJournalCategorySaga from "./Common/JournalCategory/saga";
+import TempArticleSaga from "./SuperAdmin/TempArticle/saga";
 
 export default function* rootSaga() {
     yield all([
@@ -38,5 +39,6 @@ export default function* rootSaga() {
         OrganizationSaga(),
         WebOrganizationSaga(),
         WebSettingSaga(),
+        TempArticleSaga(),
     ]);
 }
