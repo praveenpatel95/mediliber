@@ -1,6 +1,6 @@
 @import "src/styles/colors";
 #editorial_board {
-
+  border: none;
   .single-team {
     padding: 0px;
     position: relative;
@@ -9,7 +9,7 @@
   .team-thumb {
     display: block;
     width: 100%;
-    height: 180px;
+    height: 200px;
   }
   .overlay_content {
     position: absolute;

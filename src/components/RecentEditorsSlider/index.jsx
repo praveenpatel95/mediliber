@@ -68,7 +68,7 @@ function RecentEditorsSlider({getEditroial, deviceType}) {
                                 <Loader1/>
                             </div>
                             : recentEditorialBoards?.map((editor) => (
-                            <div className="me-3" key={editor?.id}>
+                            <div className="me-4" key={editor?.id}>
                                 <EditorCard editor={editor}/>
                             </div>
                         ))}

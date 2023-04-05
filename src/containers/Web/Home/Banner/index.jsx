@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Col, Row, Stack} from "react-bootstrap";
+import {Button, Col, Row} from "react-bootstrap";
 import './style.scss'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowAltCircleRight} from "@fortawesome/fontawesome-free-solid";
@@ -16,12 +16,12 @@ function Banner() {
 
                 <Row>
                     <Col sm={6} className="d-grid">
-                        <Button variant="secondaryDark" size="lg" as={Link} to="/journals" className="text-white py-3 mb-3">
+                        <Button variant="secondaryDark" size="lg" as={Link} to="/journals" className="text-white py-2 mb-3">
                             Our journals <FontAwesomeIcon className="ps-3" icon={faArrowAltCircleRight}/>
                         </Button>
                     </Col>
                     <Col sm={6} className="d-grid">
-                        <Button variant="secondaryDark" size="lg" as={Link} to="/publish-research" className="text-white py-3 mb-3">
+                        <Button variant="secondaryDark" size="lg" as={Link} to="/publish-research" className="text-white py-2 mb-3">
                             Publish with us <FontAwesomeIcon className="ps-3" icon={faArrowAltCircleRight}/>
                         </Button>
                     </Col>

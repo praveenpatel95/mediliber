@@ -92,8 +92,17 @@ $link-hover-color: $themeColorMain;
   font-size: 14px
 }
 
-.journal-card:hover {
-  box-shadow: 1px 1px 5px 0px #888;
+
+.journal-card{
+  &hover {
+    box-shadow: 1px 1px 5px 0px #888;
+  }
+  .title_height{
+    height: 60px;
+    padding: 10px;
+    align-items: center;
+    display: flex;
+  }
 }
 
 a {

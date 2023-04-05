@@ -9,12 +9,11 @@ import {faArrowRight, faSnowflake, faUsers} from "@fortawesome/fontawesome-free-
 import Banner from "./Banner";
 import AsideList from "../Common/AsideList";
 import LatestArticle from "../../Home/LatestArticle";
-import {getJournalDetailBySlug} from "../../../../stores/Common/Journal/actions";
 import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
 import Loader from "../../../../components/Loader";
 
-function JournalDetailHome({getJournalDetail}) {
+function JournalDetailHome() {
     let {journalSlug} = useParams();
 
     const {isJournalDetailFetching, isJournalDetailFetchingError, journalDetail} =
@@ -86,7 +85,7 @@ function JournalDetailHome({getJournalDetail}) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        getJournalDetail: (slug) => dispatch(getJournalDetailBySlug(slug))
+
     }
 }
 

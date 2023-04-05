@@ -6,9 +6,9 @@ import JournalMetrics from "../JournalMetrics";
 function JournalCard({journal}){
     return (
         <Card as={Link} to={`/journal/${journal?.slug}`} className="text-decoration-none journal-card">
-            <Card.Img variant="top" src={journal?.banner} height="40"/>
+            <Card.Title className="title_height">{journal?.name}</Card.Title>
+            <Card.Img variant="top" src={journal?.banner} height="40" className="rounded-0"/>
             <Card.Body>
-                <Card.Title>{journal?.name}</Card.Title>
                 <JournalMetrics journal={journal}/>
             </Card.Body>
         </Card>

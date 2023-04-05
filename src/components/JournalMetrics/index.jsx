@@ -2,7 +2,7 @@ import React from "react";
 
 function JournalMetrics({journal}) {
     return (
-        <table className="table fs-14">
+        <table className="table fs-14 mb-0">
             <tr>
                 <td>Acceptance rate</td>
                 <th>{journal?.acceptance_rate ? journal?.acceptance_rate+"%" : '-'}</th>

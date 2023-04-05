@@ -7,12 +7,12 @@ function EditorCard({editor}) {
         <Card id="editorial_board">
             <Card.Body className="text-center single-team">
                 <Image src={`${editor?.photo}`}
-                       className="team-thumb" />
+                       className="team-thumb rounded-circle" />
                 <div className="overlay_content">
 
                     <div className="content_detail">
                         <h5>{editor?.first_name +" "+editor?.last_name}</h5>
-                        <p className="text-dark">{editor?.email}</p>
+                        <p className="text-dark">{editor?.country}</p>
                         <p>{editor?.affiliation}</p>
                     </div>
                 </div>

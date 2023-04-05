@@ -8,13 +8,14 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import {Link} from "react-router-dom";
 import './style.scss'
 
-function Header() {
+function Header({isSticky}) {
+
     const [toggle, setToggle] = useState(false);
     const showToggle = () => setToggle(true);
     const closeToggle = () => setToggle(false);
 
     return (
-        <Navbar bg="theme-color" expand="lg" className="sticky-top" id="main-navbar">
+        <Navbar bg="theme-color" expand="lg" className={isSticky ? "sticky-top" :""} id="main-navbar">
             <Container>
                 <Navbar.Brand as={Link} to="/"><Logo height="50px"/></Navbar.Brand>
                 <Navbar.Offcanvas

@@ -1,12 +1,14 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import JournalMenu from "../Common/JournalMenu";
-import {Outlet, useParams} from "react-router-dom";
+import {Outlet, useOutletContext, useParams} from "react-router-dom";
 import JournalHead from "./JournalHead";
 import {connect, useSelector} from "react-redux";
 import {getJournalDetailBySlug} from "../../../../stores/Common/Journal/actions";
 import {compose} from "redux";
 
 function JournalHeader({getJournalDetail}) {
+    const {setIsSticky} = useOutletContext();
+    setIsSticky(false);
 
     let {journalSlug} = useParams();
 
@@ -20,12 +22,35 @@ function JournalHeader({getJournalDetail}) {
     const {journalDetail} =
         useSelector(state => state?.CommonJournalReducer);
 
+    const [scrollTop, setScrollTop] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = event => {
+            setScrollTop(window.scrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+
+        };
+    }, []);
+
+    if (scrollTop > 100) {
+        document.body.classList.add('scrollXJournal');
+    }else{
+        document.body.classList.remove('scrollXJournal');
+    }
+
     return (
         <>
-            <JournalHead journalName={journalDetail?.name}/>
-            <JournalMenu
-                journalSlug={journalSlug}
-            />
+            <div className="sticky-top">
+                <JournalHead journalName={journalDetail?.name}/>
+                <JournalMenu
+                    journalSlug={journalSlug}
+                />
+            </div>
             <Outlet/>
         </>
     )

@@ -9,8 +9,11 @@ import LatestArticle from "./LatestArticle";
 import IndexingSlider from "../../../components/IndexingSlider";
 import RecentEditorsSlider from "../../../components/RecentEditorsSlider";
 import OrganizationSlider from "../../../components/OrganizationSlider";
+import {useOutletContext} from "react-router-dom";
 
 function Home() {
+    const { setIsSticky } = useOutletContext();
+    setIsSticky(true);
 
     return (
         <HelmetProvider>

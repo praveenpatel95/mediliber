@@ -44,8 +44,7 @@ function LatestJournal({getFeaturedJournals, deviceType}) {
             <Container className="py-5" fluid>
                 <Row>
                     <Col sm={6}>
-                        <h2>Featured Journals
-                        </h2>
+                        <h2>Featured Journals</h2>
                     </Col>
                     <Col sm={6}>
                         <Link to="/journals" className="float-end btn btn-outline-dark">Explore our all
