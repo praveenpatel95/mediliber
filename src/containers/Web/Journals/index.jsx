@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {HelmetProvider} from "react-helmet-async";
 import {Helmet} from "react-helmet";
-import {Breadcrumb, Col, Container, Row} from "react-bootstrap";
+import {Breadcrumb, Card, Col, Container, Placeholder, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import Filter from "./Filter";
 import JournalCard from "./JournalCard";
@@ -46,9 +46,27 @@ function Journals({getJournals}) {
                         <Col sm={9}>
                             <h2>Journals</h2>
                             {isJournalListFetching ?
-                                <div className="text-center" my-5>
-                                    <Loader/>
-                                </div>
+                                <Row xs={1} md={2} className="g-4">
+                                    {[1, 2, 3, 4].map((data) => (
+                                        <Col>
+                                            <Card >
+                                                <Placeholder as={Card.Title} animation="glow">
+                                                    <Placeholder xs={6}/>
+                                                </Placeholder>
+                                                <Card.Img variant="top" src={`${process.env.PUBLIC_URL + "/holder_img.svg"}`}
+                                                          style={{height: '40px'}}/>
+                                                <Card.Body>
+                                                    <Placeholder as={Card.Text} animation="glow">
+                                                        <Placeholder xs={7}/> <Placeholder xs={4}/> <Placeholder xs={4}/>{' '}
+                                                        <Placeholder xs={6}/> <Placeholder xs={8}/>
+                                                        <Placeholder xs={6}/> <Placeholder xs={8}/>
+                                                    </Placeholder>
+                                                    <Placeholder.Button sm={12} as="button" animation="glow" />
+                                                </Card.Body>
+                                            </Card>
+                                        </Col>
+                                    ))}
+                                </Row>
                                 : journals?.length > 0 ?
                                     <Row xs={1} md={2} className="g-4">
                                         {journals?.map((journal, index) => (

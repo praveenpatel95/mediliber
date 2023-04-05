@@ -1,10 +1,11 @@
 import React, {useEffect} from "react";
-import {Col, Container, Image, Row} from "react-bootstrap";
+import {Col, Container, Image, Placeholder, Row} from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import {getIndexingList} from "../../stores/Common/Indexing/actions";
 import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
 import Loader1 from "../Loader1";
+import {faDivide} from "@fortawesome/fontawesome-free-solid";
 
 function IndexingSlider({getIndexing, deviceType}) {
     useEffect(() => {
@@ -45,27 +46,35 @@ function IndexingSlider({getIndexing, deviceType}) {
                 </Row>
 
                 <Row className="mt-3">
-                    <Carousel
-                        swipeable={false}
-                        draggable={false}
-                        responsive={responsive}
-                        ssr={true} // means to render carousel on server-side.
-                        infinite={true}
-                        autoPlay={true}
-                        autoPlaySpeed={2000}
-                        keyBoardControl={true}
-                        customTransition="all .5"
-                        transitionDuration={2000}
-                        containerClass="carousel-container"
-                        removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
-                        deviceType={deviceType}
-                        itemClass="carousel-item-padding-40-px"
-                    >
-                        {isIndexingListFetching ?
-                            <div className="text-center">
-                                <Loader1/>
-                            </div>
-                            : indexingList?.map((indexing) => (
+
+                    {isIndexingListFetching ?
+                        <Row>
+                            {[1, 2, 3, 4, 5, 6].map((data) => (
+                               <Col sm={2}>
+                                   <Placeholder as="p" animation="glow">
+                                       <Placeholder style={{height: '70px', width: '150px'}}/>
+                                   </Placeholder>
+                               </Col>
+                            ))}
+                        < /Row>
+                        :
+                        <Carousel
+                            swipeable={false}
+                            draggable={false}
+                            responsive={responsive}
+                            ssr={true} // means to render carousel on server-side.
+                            infinite={true}
+                            autoPlay={true}
+                            autoPlaySpeed={2000}
+                            keyBoardControl={true}
+                            customTransition="all .5"
+                            transitionDuration={2000}
+                            containerClass="carousel-container"
+                            removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
+                            deviceType={deviceType}
+                            itemClass="carousel-item-padding-40-px"
+                        >
+                            {indexingList?.map((indexing) => (
                                 <div key={indexing?.id}>
                                     <Image src={indexing?.image}
                                            alt={indexing?.name}
@@ -73,7 +82,8 @@ function IndexingSlider({getIndexing, deviceType}) {
                                     />
                                 </div>
                             ))}
-                    </Carousel>
+                        </Carousel>
+                    }
                 </Row>
             </Container>
 

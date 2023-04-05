@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {Col, Container, Row} from "react-bootstrap";
+import {Card, Col, Container, Placeholder, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowRight} from "@fortawesome/fontawesome-free-solid";
 import JournalCardSimple from "../../../../components/JournalCardSimple";
@@ -18,7 +18,7 @@ function LatestJournal({getFeaturedJournals, deviceType}) {
     }, []);
 
     const {isJournalFeaturedListFetching, journalFeaturedList} =
-    useSelector(state => state?.CommonJournalReducer);
+        useSelector(state => state?.CommonJournalReducer);
 
     const responsive = {
         desktop: {
@@ -55,33 +55,52 @@ function LatestJournal({getFeaturedJournals, deviceType}) {
 
                 <Row className="mt-3">
                     {isJournalFeaturedListFetching ?
-                   <Loader />
-                    :
+                        <Row>
+                            {[1, 2, 3].map((data) => (
+                                <Col sm={4}>
+                                    <Card style={{width: '18rem'}}>
+                                        <Placeholder as={Card.Title} animation="glow">
+                                            <Placeholder xs={6}/>
+                                        </Placeholder>
+                                        <Card.Img variant="top" src={`${process.env.PUBLIC_URL + "/holder_img.svg"}`}
+                                                  style={{height: '40px'}}/>
+                                        <Card.Body>
+                                            <Placeholder as={Card.Text} animation="glow">
+                                                <Placeholder xs={7}/> <Placeholder xs={4}/> <Placeholder xs={4}/>{' '}
+                                                <Placeholder xs={6}/> <Placeholder xs={8}/>
+                                                <Placeholder xs={6}/> <Placeholder xs={8}/>
+                                            </Placeholder>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                            ))}
+                        </Row>
+                        :
 
-                    <Carousel
-                        swipeable={false}
-                        draggable={false}
-                        showDots={true}
-                        responsive={responsive}
-                        ssr={true} // means to render carousel on server-side.
-                        infinite={true}
-                        autoPlay={true}
-                        autoPlaySpeed={3000}
-                        keyBoardControl={true}
-                        customTransition="all .5"
-                        transitionDuration={100}
-                        containerClass="carousel-container"
-                        removeArrowOnDeviceType={["tablet", "mobile"]}
-                        deviceType={deviceType}
-                        dotListClass="custom-dot-list-style"
-                        itemClass="carousel-item-padding-40-px"
-                    >
-                        {journalFeaturedList?.length && journalFeaturedList?.map((journal, index) => (
-                            <div className="me-3">
-                                <JournalCardSimple journal={journal}/>
-                            </div>
-                        ))}
-                    </Carousel>
+                        <Carousel
+                            swipeable={false}
+                            draggable={false}
+                            showDots={true}
+                            responsive={responsive}
+                            ssr={true} // means to render carousel on server-side.
+                            infinite={true}
+                            autoPlay={true}
+                            autoPlaySpeed={3000}
+                            keyBoardControl={true}
+                            customTransition="all .5"
+                            transitionDuration={100}
+                            containerClass="carousel-container"
+                            removeArrowOnDeviceType={["tablet", "mobile"]}
+                            deviceType={deviceType}
+                            dotListClass="custom-dot-list-style"
+                            itemClass="carousel-item-padding-40-px"
+                        >
+                            {journalFeaturedList?.length && journalFeaturedList?.map((journal, index) => (
+                                <div className="me-3">
+                                    <JournalCardSimple journal={journal}/>
+                                </div>
+                            ))}
+                        </Carousel>
                     }
                 </Row>
             </Container>
@@ -90,10 +109,11 @@ function LatestJournal({getFeaturedJournals, deviceType}) {
     )
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
     return {
         getFeaturedJournals: () => dispatch(journalFeaturedList())
     }
 }
+
 const withConnect = connect(null, mapDispatchToProps);
 export default compose(withConnect)(LatestJournal);

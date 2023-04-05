@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Card, Form} from "react-bootstrap";
+import {Card, Form, Placeholder} from "react-bootstrap";
 import '../../../../styles/checkbox.scss'
 import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
@@ -17,13 +17,13 @@ function Filter({getJournalCategory, getJournals}) {
         journalCategories
     } = useSelector(state => state?.WebJournalCategoryReducer);
 
-    const [selectedCategory, setSelectedCategory] =  useState([]);
+    const [selectedCategory, setSelectedCategory] = useState([]);
     const handleCategory = (e) => {
         const target = e.target;
         const value = target.value;
-        if(target.checked){
+        if (target.checked) {
             setSelectedCategory([...selectedCategory, value]);
-        }else{
+        } else {
             setSelectedCategory(
                 selectedCategory.filter((category) => category !== value),
             );
@@ -31,7 +31,7 @@ function Filter({getJournalCategory, getJournals}) {
     }
 
     useEffect(() => {
-        getJournals({byCategory:selectedCategory})
+        getJournals({byCategory: selectedCategory})
     }, [selectedCategory]);
 
 
@@ -41,8 +41,12 @@ function Filter({getJournalCategory, getJournals}) {
 
             <Card.Body>
                 {isJournalCategoryListFetching ?
-                    <div className="my-5 text-center">
-                        <Loader/>
+                    <div>
+                        {[1, 2, 3].map((data) => (
+                            <Placeholder as={Card.Text} animation="glow">
+                                <Placeholder sm={2}/>{ "  "}<Placeholder sm={9}/>
+                            </Placeholder>
+                        ))}
                     </div>
                     :
                     journalCategories?.map((category) => (
