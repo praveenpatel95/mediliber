@@ -77,7 +77,7 @@ export function* getDetailBySlug({payload}) {
 export function* getPageDetailBySlug({payload}) {
     try {
         const response = yield call(api(null, null)
-                .get, `/v1/journal/page/${payload}`,
+                .get, `/v1/journal/page/detail${payload}`,
             payload
         );
         yield put(getJournalPageDetailSuccess(response?.data));

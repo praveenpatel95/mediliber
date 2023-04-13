@@ -15,7 +15,8 @@ function AboutJournal({getPageDetail}) {
     let {pageSlug} = useParams();
     useEffect(() => {
         if (pageSlug) {
-            getPageDetail(pageSlug);
+            let params = `?journal=${journalSlug}&page=${pageSlug}`
+            getPageDetail(params);
         }
     }, [pageSlug]);
 
@@ -27,7 +28,7 @@ function AboutJournal({getPageDetail}) {
             <Helmet>
                 <title>{journalPageDetail?.page?.page_name}</title>
             </Helmet>
-            <main className="py-3 mb-5">
+            <main className="py-3" >
                 <Container fluid>
                     <Row>
                         <Breadcrumb>
@@ -67,7 +68,7 @@ function AboutJournal({getPageDetail}) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        getPageDetail: (slug) => dispatch(getJournalPageDetail(slug))
+        getPageDetail: (params) => dispatch(getJournalPageDetail(params))
     }
 }
 

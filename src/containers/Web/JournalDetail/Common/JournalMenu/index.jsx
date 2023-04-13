@@ -28,7 +28,7 @@ export default function JournalMenu({journalSlug}) {
                                     <NavDropdown.Item as={Link} to={`/journal/${journalSlug}/abstracting-and-indexing`}>Abstracting
                                         and Indexing</NavDropdown.Item>
                                     <NavDropdown.Item as={Link}
-                                                      to={`/journal/${journalSlug}/article-processing-charges`}>Article
+                                                      to={`/article-publication-charges`}>Article
                                         Processing Charges</NavDropdown.Item>
                                 </Col>
                                 {/*<Col xs="12" md="4" className="text-left">*/}

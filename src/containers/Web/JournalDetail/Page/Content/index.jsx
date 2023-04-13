@@ -13,7 +13,7 @@ function PageContent({journalPageDetail}) {
                         ))}
                     </ListGroup>
                 </Col>
-                <Col sm={8} className="pb-5">
+                <Col sm={8} className="pb-5 mb-10">
                     <h1 className="mb-4">{journalPageDetail?.page?.page_name}</h1>
                     {journalPageDetail?.page_content?.map((pageContent, index) => (
                         <article id={`content-${pageContent.id}`} className="mb-4">
