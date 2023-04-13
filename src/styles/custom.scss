@@ -222,7 +222,16 @@ a {
   border-bottom: 1px dashed #ccc;
   margin: 10px 0px;
 }
-
+.sort_link_fixed{
+  position: fixed;
+  width: 20%;
+  top: 45%;
+}
+.scrollXJournal{
+  .sort_link_fixed{
+    top: 20%;
+  }
+}
 
 @import "~bootstrap/scss/bootstrap";
 

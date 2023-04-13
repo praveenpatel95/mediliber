@@ -6,7 +6,7 @@ function GuideLineContent() {
         <Container>
             <Row>
                 <Col sm={4}>
-                    <ListGroup className="simple-list sticky-top" style={{'top': '120px'}}>
+                    <ListGroup className="simple-list sort_link_fixed" >
                         <ListGroup.Item className="fw-bold">Quick links</ListGroup.Item>
                         <ListGroup.Item as="a" href="#guideline" active>Author Guideline</ListGroup.Item>
                     </ListGroup>

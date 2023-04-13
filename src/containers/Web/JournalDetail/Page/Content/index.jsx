@@ -6,14 +6,14 @@ function PageContent({journalPageDetail}) {
         <Container>
             <Row>
                 <Col sm={4}>
-                    <ListGroup className="simple-list sticky-top" style={{'top': '120px'}}>
+                    <ListGroup className="simple-list sort_link_fixed">
                         <ListGroup.Item className="fw-bold">Quick links</ListGroup.Item>
                         {journalPageDetail?.page_content?.map((content, index) => (
                             <ListGroup.Item as="a" href={`#content-${content.id}`}>{content?.title}</ListGroup.Item>
                         ))}
                     </ListGroup>
                 </Col>
-                <Col sm={8} className="pb-5 mb-10">
+                <Col sm={8} className="pb-5 ">
                     <h1 className="mb-4">{journalPageDetail?.page?.page_name}</h1>
                     {journalPageDetail?.page_content?.map((pageContent, index) => (
                         <article id={`content-${pageContent.id}`} className="mb-4">
