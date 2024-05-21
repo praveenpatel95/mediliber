@@ -7,10 +7,11 @@ import {faArrowLeft, faPlus} from "@fortawesome/fontawesome-free-solid";
 import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
 import {useEffect, useState} from "react";
-import ReactQuill from 'react-quill';
 import {getOtherPageDetail, updateOtherPageDetail} from "../../../../../stores/SuperAdmin/OtherPage/actions";
 import Loader from "../../../../../components/Loader";
 
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import {CKEditor} from "@ckeditor/ckeditor5-react";
 function OtherPageEdit({getPageDetail, updatePageDetail}) {
     let {pageId} = useParams();
     const [formValues, setFormValues] = useState([]);
@@ -125,10 +126,12 @@ function OtherPageEdit({getPageDetail, updatePageDetail}) {
 
                                                 <Form.Group as={Col} md="12" className="mb-3">
                                                     <Form.Label>Section Content</Form.Label>
-                                                    <ReactQuill theme="snow"
-                                                                value={form.content}
-                                                                name="content"
-                                                                onChange={e => handleContentChange(index, e)}
+                                                    <CKEditor
+                                                        data={form.content}
+                                                        editor={ ClassicEditor }
+                                                        onChange={ ( event, editor ) => {
+                                                            handleContentChange(index, editor.getData())
+                                                        } }
                                                     />
                                                 </Form.Group>
                                             </div>

@@ -7,7 +7,7 @@ import {connect, useDispatch, useSelector} from "react-redux";
 import {login} from "../../../stores/Auth/actions";
 import {compose} from "redux";
 import {useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function Login({callLogin}) {
 
@@ -55,6 +55,9 @@ function Login({callLogin}) {
             }
             else if(user?.role_type === 'admin'){
                 navigate('/admin/dashboard');
+            }
+            else if(user?.role_type === 'author'){
+                navigate('/author/dashboard');
             }
 
         }
@@ -124,6 +127,7 @@ function Login({callLogin}) {
                                         </div>
                                         {loginError &&  <Form.Text className="text-danger">{loginError}</Form.Text>}
                                     </Form>
+                                    <p className="mt-3 text-center">Don't have an account? <Link to="/auth/register" className="theme_text_color">Sign Up</Link></p>
                                 </Card.Body>
                             </Card>
                         </Col>

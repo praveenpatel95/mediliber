@@ -16,7 +16,7 @@ body {
 }
 
 .theme_text_color {
-  color: var(--primary);
+  color: $themeColorMain !important;
 }
 
 footer {
@@ -93,11 +93,12 @@ $link-hover-color: $themeColorMain;
 }
 
 
-.journal-card{
+.journal-card {
   &hover {
     box-shadow: 1px 1px 5px 0px #888;
   }
-  .title_height{
+
+  .title_height {
     height: 60px;
     padding: 10px;
     align-items: center;
@@ -113,7 +114,8 @@ a {
 .btn-outline-dark:hover {
   color: #fff !important;
 }
-.btn-info{
+
+.btn-info {
   color: #fff !important;
 }
 
@@ -170,10 +172,15 @@ a {
   cursor: pointer;
 }
 
+.cursor_pointer {
+  cursor: pointer;
+}
+
 .bg_secondary_dark {
   background-color: #6f9b34;
 }
-.btn{
+
+.btn {
   border-radius: inherit !important;
 }
 
@@ -185,11 +192,11 @@ a {
   outline: none;
   overflow: hidden;
   position: relative;
-  color: #fff;
+  color: #fff !important;
   font-weight: 700;
   font-size: 15px;
   background-color: #222 !important;
-  padding: 17px 60px;
+  padding: 17px 60px !important;
   margin: 0 auto;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.20);
 
@@ -218,21 +225,79 @@ a {
   }
 
 }
-.form_list{
+
+.form_list {
   border-bottom: 1px dashed #ccc;
   margin: 10px 0px;
 }
-.sort_link_fixed{
-  position: fixed;
-  width: 20%;
-  top: 45%;
+
+.sort_link_fixed {
+  margin-bottom: 1.5rem !important;
 }
-.scrollXJournal{
-  .sort_link_fixed{
-    top: 20%;
+
+.scrollXJournal .sort_link_fixed {
+  top: 20%;
+}
+
+@media only screen and (min-width: 600px) {
+  .scrollXJournal .sort_link_fixed {
+    position: fixed;
+    width: 20%;
   }
 }
 
+@media only screen and (max-width: 768px) {
+  .m-mt-3 {
+    margin-top: 1rem;
+  }
+}
+
+.Rejected {
+  background: red !important;
+}
+
+.Review {
+  background: #ffc107 !important;
+}
+
+.New {
+  background: #2424c2 !important;
+}
+
+.New {
+  background: #2424c2 !important;
+}
+
+.Accepted {
+  background: #267719 !important;
+}
+
+.Published {
+  background: #78ac33 !important;
+}
+
+.list-style-1 {
+  padding: 0;
+  margin: 0;
+  li {
+    display: inline-block;
+    text-align: center;
+    width: 25%;
+    border-right: 2px solid #00000042;
+    a {
+      font-size: 25px;
+      display: block;
+    }
+  }
+
+}
+.orcid_logo{
+  height: 20px;
+  vertical-align: inherit;
+}
+.react-datepicker-wrapper{
+  width: 100%;
+}
 @import "~bootstrap/scss/bootstrap";
 
 

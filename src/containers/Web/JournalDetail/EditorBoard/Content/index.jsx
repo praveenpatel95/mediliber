@@ -15,7 +15,7 @@ function PageContent() {
         <Container>
             <Row>
                 <Col sm={4}>
-                    <ListGroup className="simple-list sort_link_fixed" >
+                    <ListGroup className="simple-list sort_link_fixed">
                         <ListGroup.Item className="fw-bold">Quick links</ListGroup.Item>
                         <ListGroup.Item as="a" href="#editorial">Editorial Board</ListGroup.Item>
                     </ListGroup>
@@ -29,24 +29,36 @@ function PageContent() {
                                 <Loader/>
                             </div>
 
-                            : journalEditorialBoards?.length > 0 ?
+                            : journalEditorialBoards ?
                                 <div>
-                                    {journalEditorialBoards?.map((editorial, index) => (
-                                        <div className="d-flex mb-4">
-                                            <div>
-                                                <Image roundedCircle src={editorial?.photo} style={{height:'70px', width:'70px'}} />
-                                            </div>
-                                            <div className="ps-3">
-                                                <b>{editorial?.first_name + " " + editorial?.last_name}</b>
-                                                <br />
-                                                <small>{editorial?.affiliation}</small><br />
-                                                <b>{editorial?.country}</b>
-                                            </div>
-                                        </div>
+
+                                    {Object.keys(journalEditorialBoards).map((categoryName) => (< >
+                                            <>
+                                                {categoryName !== 'None' && <h5>{categoryName}</h5>}
+                                            </>
+                                            {journalEditorialBoards[categoryName].map((editorial) => (
+                                                <div className="d-flex mb-4">
+                                                    <div>
+                                                        <Image roundedCircle src={editorial?.photo}
+                                                               style={{height: '70px', width: '70px'}}/>
+                                                    </div>
+                                                    <div className="ps-3">
+                                                        <b>{editorial?.first_name + " " + editorial?.last_name}</b>
+                                                        <br/>
+                                                        {editorial?.affiliation.split(/\r?\n/).map((line, index) => (
+                                                            <React.Fragment key={index}>
+                                                                {line}
+                                                                <br />
+                                                            </React.Fragment>
+                                                        ))}
+                                                        <b>{editorial?.country}</b>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        < />
                                     ))
                                     }
                                 </div>
-
                                 :
                                 <h4>No data found</h4>
                         }

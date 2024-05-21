@@ -1,5 +1,11 @@
 @import "src/styles/colors";
 
+body{
+  background: #f0f0f0 !important;
+}
+p{
+    font-size: 14px;
+  }
 #admin-navbar.navbar {
   .nav-link {
     color: #fff !important;

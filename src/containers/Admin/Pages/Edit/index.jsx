@@ -7,10 +7,11 @@ import {faArrowLeft, faPlus} from "@fortawesome/fontawesome-free-solid";
 import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
 import {useEffect, useState} from "react";
-import ReactQuill from 'react-quill';
 import {getAdminJournalPageDetail, updateAdminJournalPageDetail} from "../../../../stores/Admin/JournalPage/actions";
 import Loader from "../../../../components/Loader";
 
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import {CKEditor} from "@ckeditor/ckeditor5-react";
 function JournalPageEdit({getPageDetail, updateJournalPageDetail}) {
     let {pageId} = useParams();
     const [formValues, setFormValues] = useState([]);
@@ -124,10 +125,14 @@ function JournalPageEdit({getPageDetail, updateJournalPageDetail}) {
 
                                                 <Form.Group as={Col} md="12" className="mb-3">
                                                     <Form.Label>Section Content</Form.Label>
-                                                    <ReactQuill theme="snow"
-                                                                value={form.content}
-                                                                name="content"
-                                                                onChange={e => handleContentChange(index, e)}
+                                                    <CKEditor
+                                                        data={form.content}
+                                                        editor={ ClassicEditor }
+                                                        onReady={ editor => {
+                                                        } }
+                                                        onChange={ ( event, editor ) => {
+                                                            handleContentChange(index, editor.getData());
+                                                        } }
                                                     />
                                                 </Form.Group>
                                             </div>

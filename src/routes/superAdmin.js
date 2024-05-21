@@ -20,10 +20,11 @@ import OrganizationCreate from "../containers/SuperAdmin/organization/Create";
 import WebSetting from "../containers/SuperAdmin/WebSetting";
 import TempArticle from "../containers/SuperAdmin/TempArticle";
 import TempArticleCreate from "../containers/SuperAdmin/TempArticle/Create";
+import ContactEnquiry from "../containers/SuperAdmin/ContactEnquiry";
 
 export default [
 
-    <Route path="super-admin" element={<SuperAdminLayout/>}>
+    <Route path="super-admin" key="SuperAdminLayout" element={<SuperAdminLayout/>}>
         <Route path='dashboard' element={<Dashboard/>}/>
 
         <Route path='journal-categories' element={<JournalCategory/>}/>
@@ -59,5 +60,6 @@ export default [
         <Route path='temp-article' element={<TempArticle/>}/>
         <Route path='temp-article/create' element={<TempArticleCreate/>}/>
         <Route path='temp-article/edit/:articleId' element={<TempArticleCreate/>}/>
+        <Route path="contact-enquires" key="contact-enquires" element={<ContactEnquiry />} />
     </Route>
 ];

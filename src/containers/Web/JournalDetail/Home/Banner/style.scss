@@ -1,15 +1,30 @@
 @import "../../../../../styles/colors";
 
-.journal-banner{
+.journal-banner {
   background-size: 100% 100%;
   width: 100%;
   height: 350px;
+
   .content {
-    h1, h2, h3, h4, h5, h6, p, span, div{
+    h1, h2, h3, h4, h5, h6, p, span, div {
       color: #fff !important;
     }
-    a{
+
+    a {
       color: $themeColorMain !important;
+    }
+  }
+}
+@media only screen and (min-width: 768px) {
+  .card_banner_matrix {
+    margin-top: -300px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .footer {
+    .social_media_links{
+      padding-top: 2rem;
+      padding-left: 1.5rem;
     }
   }
 }

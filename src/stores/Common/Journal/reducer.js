@@ -30,6 +30,19 @@ export const initialState = {
     isRecentEditorialBoardFetchingError: null,
     recentEditorialBoards: [],
 
+    isJournalVolumeListFetching: false,
+    isJournalVolumeListFetchingError: null,
+    journalVolumeList: [],
+
+    isJournalVolumeArticlesFetching: false,
+    isJournalVolumeArticlesFetchingError: null,
+    journalVolumeArticles: [],
+
+    isEditorialBoardCategoryListFetching: false,
+    isEditorialBoardCategoryListFetchingError: null,
+    editorialBoardCategories: [],
+
+
 }
 
 const CommonJournalReducer = (state = initialState, action) => {
@@ -182,6 +195,71 @@ const CommonJournalReducer = (state = initialState, action) => {
                 ...state,
                 isRecentEditorialBoardFetching: false,
                 isRecentEditorialBoardFetchingError: action.error,
+            }
+
+        //Volume list
+        case types.JOURNAL_VOLUME_LIST:
+            return {
+                ...state,
+                isJournalVolumeListFetching: true,
+                isJournalVolumeListFetchingError: null,
+                journalVolumeList: []
+            }
+        case types.JOURNAL_VOLUME_LIST_SUCCESS:
+            return {
+                ...state,
+                isJournalVolumeListFetching: false,
+                journalVolumeList: action.payload
+
+            }
+        case types.JOURNAL_VOLUME_LIST_FAILURE:
+            return {
+                ...state,
+                isJournalVolumeListFetching: false,
+                isJournalVolumeListFetchingError: action.error,
+            }
+
+        //Volume articles
+        case types.JOURNAL_VOLUME_ISSUE_ARTICLES:
+            return {
+                ...state,
+                isJournalVolumeArticlesFetching: true,
+                isJournalVolumeArticlesFetchingError: null,
+                journalVolumeArticles: []
+            }
+        case types.JOURNAL_VOLUME_ISSUE_ARTICLES_SUCCESS:
+            return {
+                ...state,
+                isJournalVolumeArticlesFetching: false,
+                journalVolumeArticles: action.payload
+
+            }
+        case types.JOURNAL_VOLUME_ISSUE_ARTICLES_FAILURE:
+            return {
+                ...state,
+                isJournalVolumeArticlesFetching: false,
+                isJournalVolumeArticlesFetchingError: action.error,
+            }
+
+        case types.EDITOIRAL_BOARD_CATEGORY_LIST:
+            return {
+                ...state,
+                isJournalEditorialBoardFetching: true,
+                isEditorialBoardCategoryListFetchingError: null,
+                editorialBoardCategories: []
+            }
+        case types.EDITOIRAL_BOARD_CATEGORY_LIST_SUCCESS:
+            return {
+                ...state,
+                isJournalEditorialBoardFetching: false,
+                editorialBoardCategories: action.payload
+
+            }
+        case types.EDITOIRAL_BOARD_CATEGORY_LIST_FAILURE:
+            return {
+                ...state,
+                isJournalEditorialBoardFetching: false,
+                isEditorialBoardCategoryListFetchingError: action.error,
             }
         default:
             return state;

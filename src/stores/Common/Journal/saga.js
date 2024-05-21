@@ -7,6 +7,7 @@ import {
     takeLatest,
 } from "redux-saga/effects";
 import {
+    editorialBoardCategoryList, editorialBoardCategoryListFailure, editorialBoardCategoryListSuccess,
     getJournalDetailBySlugFailure,
     getJournalDetailBySlugSuccess,
     getJournalEditorialBoardFailure,
@@ -14,7 +15,13 @@ import {
     getJournalPageDetailFailure,
     getJournalPageDetailSuccess,
     getJournalReviewerBoardFailure,
-    getJournalReviewerBoardSuccess, getRecentEditorialBoardFailure, getRecentEditorialBoardSuccess,
+    getJournalReviewerBoardSuccess,
+    getJournalVolumeArticlesFailure,
+    getJournalVolumeArticlesSuccess,
+    getJournalVolumeListFailure,
+    getJournalVolumeListSuccess,
+    getRecentEditorialBoardFailure,
+    getRecentEditorialBoardSuccess,
     journalFeaturedListFailure,
     journalFeaturedListSuccess,
 
@@ -22,11 +29,16 @@ import {
     journalListSuccess
 } from "./actions";
 import {
+    EDITOIRAL_BOARD_CATEGORY_LIST,
     JOURNAL_BY_SLUG,
     JOURNAL_EDITORIAL_BOARD,
     JOURNAL_FEATURED_LIST,
     JOURNAL_LIST,
-    JOURNAL_PAGE_DETAIL, JOURNAL_REVIEWER_BOARD, RECENT_EDITORIAL_BOARD
+    JOURNAL_PAGE_DETAIL,
+    JOURNAL_REVIEWER_BOARD,
+    JOURNAL_VOLUME_ISSUE_ARTICLES,
+    JOURNAL_VOLUME_LIST,
+    RECENT_EDITORIAL_BOARD
 } from "./constant";
 
 export function* getJournalList({payload}) {
@@ -128,6 +140,47 @@ export function* getRecentEditorialBoard({payload}) {
         yield put(getRecentEditorialBoardFailure(e.response?.data?.message));
     }
 }
+
+//get volume list
+export function* getJournalVolumeListApi({payload}) {
+    try {
+        const response = yield call(api(null, null)
+                .get, `/v1/journal/volume/${payload}/list`,
+            payload
+        );
+        yield put(getJournalVolumeListSuccess(response?.data));
+
+    } catch (e) {
+        yield put(getJournalVolumeListFailure(e.response?.data?.message));
+    }
+}
+
+//get volume articles
+export function* getJournalVolumeArticlesListApi({payload}) {
+    try {
+        const response = yield call(api(null, null)
+                .get, `/v1/journal/volume/article/${payload.journalId}/${payload.volume}/${payload.issue}`,
+            payload
+        );
+        yield put(getJournalVolumeArticlesSuccess(response?.data));
+
+    } catch (e) {
+        yield put(getJournalVolumeArticlesFailure(e.response?.data?.message));
+    }
+}
+
+export function* getEditorialBoardCategoryListApi({payload}) {
+    try {
+        const response = yield call(api(null, null)
+                .get, `/v1/editorial/board-category`,
+            payload
+        );
+        yield put(editorialBoardCategoryListSuccess(response?.data));
+
+    } catch (e) {
+        yield put(editorialBoardCategoryListFailure(e.response?.data?.message));
+    }
+}
 /**
  *
  * Saga flow
@@ -154,6 +207,17 @@ export function* getReviewerBoardBySlugFlow() {
 export function* getRecentlyEditorialBoardFlow() {
     yield takeLatest(RECENT_EDITORIAL_BOARD, getRecentEditorialBoard);
 }
+export function* getJournalVolumeListApiFlow() {
+    yield takeLatest(JOURNAL_VOLUME_LIST, getJournalVolumeListApi);
+}
+
+export function* getJournalVolumeArticlesListApiFlow() {
+    yield takeLatest(JOURNAL_VOLUME_ISSUE_ARTICLES, getJournalVolumeArticlesListApi);
+}
+
+export function* getEditorialBoardCategoryListApiFlow() {
+    yield takeLatest(EDITOIRAL_BOARD_CATEGORY_LIST, getEditorialBoardCategoryListApi);
+}
 
 
 export default function* WebJournalSaga() {
@@ -165,5 +229,8 @@ export default function* WebJournalSaga() {
         getEditorialBoardFlow(),
         getReviewerBoardBySlugFlow(),
         getRecentlyEditorialBoardFlow(),
+        getJournalVolumeListApiFlow(),
+        getJournalVolumeArticlesListApiFlow(),
+        getEditorialBoardCategoryListApiFlow(),
     ]);
 }

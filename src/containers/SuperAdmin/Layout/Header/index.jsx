@@ -65,6 +65,7 @@ function Header() {
                             <Nav.Link as={Link} to="/super-admin/organization">Organizations</Nav.Link>
                             <Nav.Link as={Link} to="/super-admin/web-setting">Web Setting</Nav.Link>
                             <Nav.Link as={Link} to="/super-admin/temp-article">Temp Articles</Nav.Link>
+                            <Nav.Link as={Link} to="/super-admin/contact-enquires">Contact Enquires</Nav.Link>
                         </Nav>
                         <Nav >
                             <NavDropdown title="My Account">

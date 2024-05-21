@@ -10,9 +10,9 @@ import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
 import {useEffect} from "react";
 import {journalCreate, journalGet, journalUpdate} from "../../../../stores/SuperAdmin/Journals/actions";
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import {journalCategoryList} from "../../../../stores/SuperAdmin/JournalCategory/actions";
+import {CKEditor} from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 function JournalCreate({createJournal, getJournal, updateJournal, journalCategoryList}) {
     let {journalId} = useParams();
@@ -36,6 +36,7 @@ function JournalCreate({createJournal, getJournal, updateJournal, journalCategor
         const formData = new FormData();
         formData.append('journal_category_id', values.journal_category_id)
         formData.append('name', values.journal_name)
+        formData.append('short_code', values.short_code)
         formData.append('banner_content', values.banner_content)
         formData.append('journal_profile', values.journal_profile ? values.journal_profile :"")
         formData.append('editor_spotlight', values.editor_spotlight ? values.editor_spotlight : "")
@@ -81,6 +82,7 @@ function JournalCreate({createJournal, getJournal, updateJournal, journalCategor
         initialValues: {
             journal_category_id: "",
             journal_name: "",
+            short_code: "",
             banner: "",
             banner_content: "",
             journal_profile: "",
@@ -90,6 +92,7 @@ function JournalCreate({createJournal, getJournal, updateJournal, journalCategor
         validationSchema: Yup.object({
             journal_category_id: Yup.number().required('Journal category is required'),
             journal_name: Yup.string().required('Journal name is required'),
+            short_code: Yup.string().required('Journal short name is required'),
             banner_content: Yup.string().required('Banner content is required'),
         }),
         onSubmit,
@@ -102,6 +105,7 @@ function JournalCreate({createJournal, getJournal, updateJournal, journalCategor
                     ...values,
                     journal_category_id: journal?.journal_category_id,
                     journal_name: journal?.name,
+                    short_code: journal?.short_code,
                     banner_content: journal?.banner_content,
                     journal_profile: journal?.journal_profile,
                     editor_spotlight: journal?.editor_spotlight,
@@ -167,21 +171,38 @@ function JournalCreate({createJournal, getJournal, updateJournal, journalCategor
                                             ''
                                         )}
                                     </Form.Group>
-                                    <Form.Group as={Col} md="12" className="mb-3">
-                                        <Form.Label>Journal Name</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Enter journal name"
-                                            value={values?.journal_name}
-                                            onChange={e => setValues({...values, journal_name: e.target.value})}
-                                            required
-                                        />
-                                        {touched?.journal_name && errors?.journal_name ? (
-                                            <Form.Text className="text-danger">{errors?.journal_name}</Form.Text>
-                                        ) : (
-                                            ''
-                                        )}
-                                    </Form.Group>
+                                  <div className="row">
+                                      <Form.Group as={Col} md="8" className="mb-3">
+                                          <Form.Label>Journal Name</Form.Label>
+                                          <Form.Control
+                                              type="text"
+                                              placeholder="Enter journal name"
+                                              value={values?.journal_name}
+                                              onChange={e => setValues({...values, journal_name: e.target.value})}
+                                              required
+                                          />
+                                          {touched?.journal_name && errors?.journal_name ? (
+                                              <Form.Text className="text-danger">{errors?.journal_name}</Form.Text>
+                                          ) : (
+                                              ''
+                                          )}
+                                      </Form.Group>
+                                      <Form.Group as={Col} md="4" className="mb-3">
+                                          <Form.Label>Journal Short Name</Form.Label>
+                                          <Form.Control
+                                              type="text"
+                                              placeholder="Enter journal short name"
+                                              value={values?.short_code}
+                                              onChange={e => setValues({...values, short_code: e.target.value})}
+                                              required
+                                          />
+                                          {touched?.short_code && errors?.short_code ? (
+                                              <Form.Text className="text-danger">{errors?.short_code}</Form.Text>
+                                          ) : (
+                                              ''
+                                          )}
+                                      </Form.Group>
+                                  </div>
                                     <Form.Group as={Col} md="12" className="mb-3">
                                         <Form.Label>Journal Banner</Form.Label>
                                         <Form.Control
@@ -198,14 +219,14 @@ function JournalCreate({createJournal, getJournal, updateJournal, journalCategor
                                     </Form.Group>
                                     <Form.Group as={Col} md="12" className="mb-3">
                                         <Form.Label>Banner Content</Form.Label>
-                                        <ReactQuill theme="snow"
-                                                    value={values?.banner_content}
-                                                    onChange={(e) => setValues({...values, banner_content: e})}/>
-                                        {touched?.banner_content && errors?.banner_content ? (
-                                            <Form.Text className="text-danger">{errors?.banner_content}</Form.Text>
-                                        ) : (
-                                            ''
-                                        )}
+                                        <CKEditor
+                                            data={values?.banner_content ? values?.banner_content :""}
+                                            editor={ClassicEditor}
+                                            onChange={ ( event, editor ) => {
+                                                setValues({...values, banner_content: editor.getData()})
+                                            } }
+                                        />
+
                                     </Form.Group>
                                     <Form.Group as={Col} md="12" className="mb-3">
                                         <Form.Label>Profile Content</Form.Label>

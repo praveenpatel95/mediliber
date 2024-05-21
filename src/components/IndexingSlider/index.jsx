@@ -49,8 +49,8 @@ function IndexingSlider({getIndexing, deviceType}) {
 
                     {isIndexingListFetching ?
                         <Row>
-                            {[1, 2, 3, 4, 5, 6].map((data) => (
-                               <Col sm={2}>
+                            {[1, 2, 3, 4, 5, 6].map((data,key) => (
+                               <Col sm={2} key={key}>
                                    <Placeholder as="p" animation="glow">
                                        <Placeholder style={{height: '70px', width: '150px'}}/>
                                    </Placeholder>

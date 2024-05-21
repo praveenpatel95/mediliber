@@ -18,6 +18,14 @@ import WebOrganizationSaga from "./Common/Organization/saga";
 import WebSettingSaga from "./Common/WebSetting/saga";
 import WebJournalCategorySaga from "./Common/JournalCategory/saga";
 import TempArticleSaga from "./SuperAdmin/TempArticle/saga";
+import CountrySaga from "./Common/Country/saga";
+import ArticleSaga from "./Article/saga";
+import AuthorProfileSaga from "./Author/Profile/saga";
+import JournalArticleSaga from "./Admin/Article/saga";
+import WebJournalArticleSaga from "./Common/Article/saga";
+import ArticleTypeSaga from "./Common/ArticleType/saga";
+import JournalArticleAuthorSaga from "./Admin/ArticleAuhtor/saga";
+import ContactEnquirySaga from "./SuperAdmin/ContactEqnuiry/saga";
 
 export default function* rootSaga() {
     yield all([
@@ -40,5 +48,13 @@ export default function* rootSaga() {
         WebOrganizationSaga(),
         WebSettingSaga(),
         TempArticleSaga(),
+        CountrySaga(),
+        ArticleSaga(),
+        AuthorProfileSaga(),
+        JournalArticleSaga(),
+        WebJournalArticleSaga(),
+        ArticleTypeSaga(),
+        JournalArticleAuthorSaga(),
+        ContactEnquirySaga(),
     ]);
 }

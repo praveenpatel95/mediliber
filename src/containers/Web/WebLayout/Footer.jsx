@@ -53,7 +53,7 @@ function Footer({getDetail}) {
                             <Nav.Link as={Link} to="/responsible-disclosure-policy">Responsible Disclosure Policy</Nav.Link>
                         </Nav>
                     </Col>
-                    <Col sm="2">
+                    <Col sm="2" className="social_media_links">
                         <h4 className="text-white">Follow us: </h4>
                         <Nav>
                             <Nav.Link href={webSettingDetail?.fb_link} target="_blank"><FontAwesomeIcon className="fa-2x" icon={faFacebookSquare}/> </Nav.Link>
@@ -69,8 +69,9 @@ function Footer({getDetail}) {
 
 
             </Container>
-            <div className="text-center pb-3">© 2023 Mediliber publication group.
-                All Rights Reserved.
+            <div className="text-center pb-3 mx-5 px-5">
+                <img src="http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png" alt="creativecommons" width="100"/><br />
+                This work is licensed under a <a href="https://creativecommons.org/" target="_blank"><b>Creative Commons Attribution-Share Alike 4.0</b></a> International License. <br />Copyright @ 2023 MedLiber Publishing Group, All Rights Reserved.
             </div>
 
         </footer>

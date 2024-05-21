@@ -19,8 +19,15 @@ import {
     editorialBoardUpdate
 } from "../../../../stores/Admin/EditorialBoard/actions";
 import moment from "moment/moment";
+import {editorialBoardCategoryList} from "../../../../stores/Common/Journal/actions";
+import CommonJournalReducer from "../../../../stores/Common/Journal/reducer";
 
-function EditorialBoardCreate({createEditorialBoard, getEditorialBoard, updateEditorialBoard}) {
+function EditorialBoardCreate({
+                                  createEditorialBoard,
+                                  getEditorialBoard,
+                                  updateEditorialBoard,
+                                  getEditorialCategories
+}) {
     let {EditorialId} = useParams();
 
     const {
@@ -32,6 +39,8 @@ function EditorialBoardCreate({createEditorialBoard, getEditorialBoard, updateEd
         editorialBoard,
 
     } = useSelector(state => state?.AdminEditorialBoardReducer);
+
+    const {isJournalEditorialBoardFetching, isEditorialBoardCategoryListFetchingError, editorialBoardCategories} = useSelector(state => state?.CommonJournalReducer)
 
 
     const onSubmit = () => {
@@ -52,7 +61,9 @@ function EditorialBoardCreate({createEditorialBoard, getEditorialBoard, updateEd
         formData.append('google_scholar', values.google_scholar ? values?.google_scholar : "")
         formData.append('research_gate', values.research_gate ? values?.research_gate : "")
         formData.append('orcid', values.orcid ? values?.orcid : "")
+        formData.append('order_no', values.order_no)
         formData.append('expected_submission_date', values.expected_submission_date ? moment(values.expected_submission_date).format("DD-MM-YYYY") : "")
+        formData.append('editorial_board_category_id', values.category)
 
 
         if (EditorialId) {
@@ -68,6 +79,10 @@ function EditorialBoardCreate({createEditorialBoard, getEditorialBoard, updateEd
             getEditorialBoard({id: EditorialId})
         }
     }, [EditorialId]);
+
+    useEffect(() => {
+        getEditorialCategories();
+    }, []);
 
 
     const navigate = useNavigate();
@@ -104,6 +119,8 @@ function EditorialBoardCreate({createEditorialBoard, getEditorialBoard, updateEd
             google_scholar: "",
             research_gate: "",
             orcid: "",
+            order_no: "",
+            category: "",
         },
         validationSchema: Yup.object({
             first_name: Yup.string().required('First name is required'),
@@ -112,6 +129,8 @@ function EditorialBoardCreate({createEditorialBoard, getEditorialBoard, updateEd
             country: Yup.string().required('Country is required'),
             email: Yup.string().required('Email address is required'),
             earning_policy: Yup.string().required('Earning policy is required'),
+            category: Yup.string().required('Category is required'),
+            order_no: Yup.string().required('Order no is required'),
         }),
         onSubmit,
     });
@@ -134,6 +153,8 @@ function EditorialBoardCreate({createEditorialBoard, getEditorialBoard, updateEd
                     google_scholar: editorialBoard?.google_scholar,
                     research_gate: editorialBoard?.research_gate,
                     orcid: editorialBoard?.orcid,
+                    order_no: editorialBoard?.order_no,
+                    category: editorialBoard?.editorial_board_category_id,
                 })
         }
     }, [editorialBoard]);
@@ -175,6 +196,29 @@ function EditorialBoardCreate({createEditorialBoard, getEditorialBoard, updateEd
                                 <Form validated={true} onSubmit={handleSubmit}>
 
                                     <Row>
+                                        <Form.Group as={Col} md="6" className="mb-3">
+                                            <Form.Label>Member Category  <span className="text-danger">*</span></Form.Label>
+                                            <Form.Select
+                                                value={values?.category}
+                                                name="country"
+                                                onChange={e => setValues({...values, category: e.target.value})}
+                                                required
+                                            >
+                                                <option value="">--Select--</option>
+                                                {editorialBoardCategories?.map((category, key) => (
+                                                    <option key={key}
+                                                            selected={category.id === values?.category} value={category.id}>{category?.category_name}</option>
+                                                ))}
+
+                                            </Form.Select>
+                                            {touched?.first_name && errors?.first_name ? (
+                                                <Form.Text className="text-danger">{errors?.first_name}</Form.Text>
+                                            ) : (
+                                                ''
+                                            )}
+                                        </Form.Group>
+                                    </Row>
+                                        <Row>
                                         <Form.Group as={Col} md="6" className="mb-3">
                                             <Form.Label>First Name <span className="text-danger">*</span></Form.Label>
                                             <Form.Control
@@ -242,6 +286,7 @@ function EditorialBoardCreate({createEditorialBoard, getEditorialBoard, updateEd
                                             <Form.Label>Affiliation <span className="text-danger">*</span></Form.Label>
                                             <Form.Control
                                                 type="text"
+                                                as="textarea"
                                                 placeholder="Enter affiliation"
                                                 value={values?.affiliation}
                                                 onChange={e => setValues({...values, affiliation: e.target.value})}
@@ -395,6 +440,16 @@ function EditorialBoardCreate({createEditorialBoard, getEditorialBoard, updateEd
                                                 )}
                                             </Form.Group>
                                         }
+                                        <Form.Group as={Col} md="6" className="mb-3">
+                                            <Form.Label>Order No. <small className="text-danger">(Sequence)</small></Form.Label>
+                                            <Form.Control
+                                                type="number"
+                                                name="order_no"
+                                                value={values?.order_no}
+                                                required={true}
+                                                onChange={e => setValues({...values, order_no: e.target.value})}
+                                            />
+                                        </Form.Group>
                                     </Row>
                                     <Row>
                                         <Form.Group as={Col} md="6" className="mb-3">
@@ -521,6 +576,7 @@ function mapDispatchToProps(dispatch) {
         createEditorialBoard: (data) => dispatch(editorialBoardCreate(data)),
         getEditorialBoard: (data) => dispatch(editorialBoardGet(data)),
         updateEditorialBoard: (data) => dispatch(editorialBoardUpdate(data)),
+        getEditorialCategories: () => dispatch(editorialBoardCategoryList()),
     };
 }
 

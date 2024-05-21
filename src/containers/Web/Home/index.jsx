@@ -18,7 +18,7 @@ function Home() {
     return (
         <HelmetProvider>
             <Helmet>
-                <title>Mediliber - Publication group</title>
+                <title>MedLiber - Publishing Group</title>
             </Helmet>
             <main>
                 <Banner/>

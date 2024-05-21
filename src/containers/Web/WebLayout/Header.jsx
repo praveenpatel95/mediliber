@@ -15,7 +15,7 @@ function Header({isSticky}) {
     const closeToggle = () => setToggle(false);
 
     return (
-        <Navbar bg="theme-color" expand="lg" className={isSticky ? "sticky-top" :""} id="main-navbar">
+        <Navbar bg="theme-color" expand="lg" className={isSticky ? "sticky-top" :""} id="main-navbar" >
             <Container>
                 <Navbar.Brand as={Link} to="/"><Logo height="50px"/></Navbar.Brand>
                 <Navbar.Offcanvas
@@ -31,12 +31,12 @@ function Header({isSticky}) {
                     </Offcanvas.Header>
                     <Offcanvas.Body className="justify-content-end">
 
-                        <Nav>
+                        <Nav onClick={() =>setToggle(false)}>
                             <Nav.Link as={Link} to="/journals">Journals </Nav.Link>
                             <Nav.Link as={Link} to="/join-us">Join Us</Nav.Link>
                             <Nav.Link as={Link} to="/editorial-policy">Editorial Policies</Nav.Link>
                             <Nav.Link as={Link} to="/about-us">About us</Nav.Link>
-                            <Nav.Link>Submit Manuscript </Nav.Link>
+                            <Nav.Link as={Link} to="/auth/register">Submit Manuscript </Nav.Link>
 
                         </Nav>
 

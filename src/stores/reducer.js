@@ -20,6 +20,14 @@ import WebOrganizationReducer from "./Common/Organization/reducer";
 import WebSettingReducer from "./Common/WebSetting/reducer";
 import WebJournalCategoryReducer from "./Common/JournalCategory/reducer";
 import TempArticleReducer from "./SuperAdmin/TempArticle/reducer";
+import CountryReducer from "./Common/Country/reducer";
+import ArticleReducer from "./Article/reducer";
+import AuthorReducer from "./Author/Profile/reducer";
+import JournalArticleReducer from "./Admin/Article/reducer";
+import WebJournalArticleReducer from "./Common/Article/reducer";
+import ArticleTypeReducer from "./Common/ArticleType/reducer";
+import JournalArticleAuthorReducer from "./Admin/ArticleAuhtor/reducer";
+import ContactEnquiryReducer from "./SuperAdmin/ContactEqnuiry/reducer";
 
 
 const authPersistConfig = {
@@ -48,6 +56,14 @@ const rootReducer = combineReducers({
             WebOrganizationReducer: WebOrganizationReducer,
             WebSettingReducer: WebSettingReducer,
             TempArticleReducer: TempArticleReducer,
+            CountryReducer: CountryReducer,
+            ArticleReducer: ArticleReducer,
+            AuthorReducer: AuthorReducer,
+            JournalArticleReducer: JournalArticleReducer,
+            WebJournalArticleReducer: WebJournalArticleReducer,
+            ArticleTypeReducer: ArticleTypeReducer,
+            JournalArticleAuthorReducer: JournalArticleAuthorReducer,
+            ContactEnquiryReducer: ContactEnquiryReducer,
         }
     )
 ;

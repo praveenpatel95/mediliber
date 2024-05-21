@@ -23,7 +23,7 @@ function LatestJournal({getFeaturedJournals, deviceType}) {
     const responsive = {
         desktop: {
             breakpoint: {max: 3000, min: 1024},
-            items: 3,
+            items: 4,
             partialVisibilityGutter: 40,
             slidesToSlide: 3
         },
@@ -56,8 +56,8 @@ function LatestJournal({getFeaturedJournals, deviceType}) {
                 <Row className="mt-3">
                     {isJournalFeaturedListFetching ?
                         <Row>
-                            {[1, 2, 3].map((data) => (
-                                <Col sm={4}>
+                            {[1, 2, 3].map((data, key) => (
+                                <Col sm={4} key={key}>
                                     <Card style={{width: '18rem'}}>
                                         <Placeholder as={Card.Title} animation="glow">
                                             <Placeholder xs={6}/>
@@ -96,7 +96,7 @@ function LatestJournal({getFeaturedJournals, deviceType}) {
                             itemClass="carousel-item-padding-40-px"
                         >
                             {journalFeaturedList?.length && journalFeaturedList?.map((journal, index) => (
-                                <div className="me-3">
+                                <div className="me-3" key={journal?.id}>
                                     <JournalCardSimple journal={journal}/>
                                 </div>
                             ))}

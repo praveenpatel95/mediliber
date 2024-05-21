@@ -1,7 +1,6 @@
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import Container from "react-bootstrap/Container";
 import {Button, Card, Col, Form, Row, Spinner} from "react-bootstrap";
-import ReactQuill from "react-quill";
 import {getJournalProfile, updateJournalProfile} from "../../../stores/Admin/Journal/actions";
 import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
@@ -10,7 +9,8 @@ import Loader from "../../../components/Loader";
 import useValidator from "../../../utils/useValidator";
 import * as Yup from "yup";
 import {webJournalCategoryList} from "../../../stores/Common/JournalCategory/actions";
-
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import {CKEditor} from "@ckeditor/ckeditor5-react";
 function JournalProfile({fetchJournal, updateJournal, getJournalCategories}) {
     const {
         isJournalFetching,
@@ -209,8 +209,17 @@ function JournalProfile({fetchJournal, updateJournal, getJournalCategories}) {
                                         <Form.Group as={Col} md="12" className="mb-3">
                                             <Form.Label>Banner Content <span
                                                 className="text-danger">*</span></Form.Label>
-                                            <ReactQuill theme="snow" value={bannerContent}
-                                                        onChange={(e) => setBannerContent(e)}/>
+                                            <CKEditor
+                                                data={bannerContent}
+                                                editor={ ClassicEditor }
+                                                onReady={ editor => {
+                                                    // You can store the "editor" and use when it is needed.
+                                                } }
+                                                onChange={ ( event, editor ) => {
+                                                    setBannerContent(editor.getData());
+                                                } }
+                                            />
+
 
                                         </Form.Group>
                                         <Form.Group as={Col} md="12" className="mb-3">

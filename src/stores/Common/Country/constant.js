@@ -1,0 +1,6 @@
+/**
+ * Get List
+ */
+export const GET_COUNTRY_LIST = "web/GET_COUNTRY_LIST";
+export const GET_COUNTRY_LIST_SUCCESS = "web/GET_COUNTRY_LIST_SUCCESS";
+export const GET_COUNTRY_LIST_FAILURE = "web/GET_COUNTRY_LIST_FAILURE";

@@ -21,9 +21,9 @@ export default function AsideList() {
     return (
         <div className="mb-3">
             <ListGroup className="fs-6 list2">
-                <ListGroup.Item className="bg-theme-color text-white"><FontAwesomeIcon icon={faUpload}
+                <ListGroup.Item as={Link} to="/auth/register" className="bg-theme-color text-white"><FontAwesomeIcon icon={faUpload}
                                                                                        className="w-25"/> Submit
-                    Article <FontAwesomeIcon className="float-end" icon={faArrowRight}/></ListGroup.Item>
+                    Manuscript <FontAwesomeIcon className="float-end" icon={faArrowRight}/></ListGroup.Item>
                 <ListGroup.Item as={Link} to={`/journal/${journalDetail?.slug}/author-guidelines`}><FontAwesomeIcon
                     icon={faFileAlt}
                     className="w-25"/> Author

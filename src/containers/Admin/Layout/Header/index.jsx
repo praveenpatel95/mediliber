@@ -24,7 +24,7 @@ function Header() {
     return (
         <Navbar bg="theme-color" expand="lg" className="sticky-top" id="admin-navbar">
             <Container>
-                <Navbar.Brand as={Link} to="/super-admin/dashboard">
+                <Navbar.Brand as={Link} to="/admin/dashboard">
                     <img src={process.env.PUBLIC_URL+'/mediliber-logo-small.png'} height={40}/>
                 </Navbar.Brand>
                 <Navbar.Offcanvas
@@ -41,6 +41,7 @@ function Header() {
                     <Offcanvas.Body >
 
                         <Nav className="me-auto">
+                            <Nav.Link as={Link} to="/admin/articles">Articles</Nav.Link>
                             <Nav.Link as={Link} to="/admin/journal-profile">Journal Profile</Nav.Link>
                             <Nav.Link as={Link} to="/admin/journal-pages">Journal Pages</Nav.Link>
                             <Nav.Link as={Link} to="/admin/editorial-board">Editorial Board</Nav.Link>

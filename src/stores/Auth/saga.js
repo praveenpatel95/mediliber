@@ -27,11 +27,11 @@ import {
 export function* fetchRegister({payload}) {
     try {
         const response = yield call(api(null, null, false)
-                .post, `/v1/auth/register`,
+                .post, `/v1/author/register`,
             payload
         );
 
-        yield put(registerSuccess({token: response.token, user: response}))
+        yield put(registerSuccess(response))
 
     } catch (e) {
         yield put(registerFailure(e.response.data));

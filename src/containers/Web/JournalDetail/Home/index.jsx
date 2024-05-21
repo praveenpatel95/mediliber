@@ -52,7 +52,7 @@ function JournalDetailHome() {
                                                 <div className="divider-dashed mb-2"></div>
 
                                                 <p>{journalDetail?.editor_spotlight}</p>
-                                                <Link to={`/journal/${journalSlug}/editors`} className="text-secondary">Editorial
+                                                <Link to={`/journal/${journalSlug}/editorial-board`} className="text-secondary">Editorial
                                                     board panel <FontAwesomeIcon
                                                         icon={faArrowRight}/></Link>
                                             </article>

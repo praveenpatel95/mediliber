@@ -1,4 +1,10 @@
 import * as types from './constant'
+import {
+    JOURNAL_VOLUME_ISSUE_ARTICLES, JOURNAL_VOLUME_ISSUE_ARTICLES_FAILURE, JOURNAL_VOLUME_ISSUE_ARTICLES_SUCCESS,
+    JOURNAL_VOLUME_LIST,
+    JOURNAL_VOLUME_LIST_FAILURE,
+    JOURNAL_VOLUME_LIST_SUCCESS
+} from "./constant";
 
 //GET LIST
 export const journalList = (payload) => ({
@@ -113,5 +119,52 @@ export const getRecentEditorialBoardSuccess = (payload) => ({
 
 export const getRecentEditorialBoardFailure = (error) => ({
     type: types.RECENT_EDITORIAL_BOARD_FAILURE,
+    error
+});
+
+//GET JOURNAL VOLUMNE LIST
+export const getJournalVolumeList = (payload) => ({
+    type: types.JOURNAL_VOLUME_LIST,
+    payload
+});
+
+export const getJournalVolumeListSuccess = (payload) => ({
+    type: types.JOURNAL_VOLUME_LIST_SUCCESS,
+    payload
+});
+
+export const getJournalVolumeListFailure = (error) => ({
+    type: types.JOURNAL_VOLUME_LIST_FAILURE,
+    error
+});
+
+//GET JOURNAL VOLUMNE issue articles
+export const getJournalVolumeArticles = (payload) => ({
+    type: types.JOURNAL_VOLUME_ISSUE_ARTICLES,
+    payload
+});
+
+export const getJournalVolumeArticlesSuccess = (payload) => ({
+    type: types.JOURNAL_VOLUME_ISSUE_ARTICLES_SUCCESS,
+    payload
+});
+
+export const getJournalVolumeArticlesFailure = (error) => ({
+    type: types.JOURNAL_VOLUME_ISSUE_ARTICLES_FAILURE,
+    error
+});
+
+export const editorialBoardCategoryList = (payload) => ({
+    type: types.EDITOIRAL_BOARD_CATEGORY_LIST,
+    payload
+});
+
+export const editorialBoardCategoryListSuccess = (payload) => ({
+    type: types.EDITOIRAL_BOARD_CATEGORY_LIST_SUCCESS,
+    payload
+});
+
+export const editorialBoardCategoryListFailure = (error) => ({
+    type: types.EDITOIRAL_BOARD_CATEGORY_LIST_FAILURE,
     error
 });

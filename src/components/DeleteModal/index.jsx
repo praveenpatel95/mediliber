@@ -58,7 +58,6 @@ function DeleteModal({
 
 function mapDispatchToProps(dispatch) {
     return {
-        //   deleteJournalCategory: (data) => dispatch(journalCategoryDelete(data)),
         getJournalCategoryList: (data) => dispatch(journalCategoryList(data))
     };
 }

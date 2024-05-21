@@ -7,11 +7,14 @@ import {faArrowLeft} from "@fortawesome/fontawesome-free-solid";
 import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
 import {useEffect, useState} from "react";
-import ReactQuill from 'react-quill';
 import {webpageGetDetail, webpageUpdateDetail} from "../../../../../stores/SuperAdmin/WebPage/actions";
 import Loader from "../../../../../components/Loader";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import {CKEditor} from "@ckeditor/ckeditor5-react";
 
 function MainPageEdit({getPageDetail, updatePageDetail}) {
+
+
     let {pageId} = useParams();
     //get page detail by id
     useEffect(() => {
@@ -43,7 +46,8 @@ function MainPageEdit({getPageDetail, updatePageDetail}) {
     const [pageContent, setPageContent] = useState('')
     const [banner, setBanner] = useState('')
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         const formData = new FormData();
         formData.append('page_title', pageTitle);
         formData.append('banner', banner);
@@ -63,7 +67,6 @@ function MainPageEdit({getPageDetail, updatePageDetail}) {
     const handleImage = (file) => {
         setBanner(file)
     }
-
 
     return (
         <HelmetProvider>
@@ -128,20 +131,28 @@ function MainPageEdit({getPageDetail, updatePageDetail}) {
                                         </Form.Group>
                                         <Form.Group as={Col} md="12" className="mb-3">
                                             <Form.Label>Banner Content</Form.Label>
-                                            <ReactQuill theme="snow"
-                                                        name="banner_content"
-                                                        value={bannerContent}
-                                                // onChange={(e) => handleEditorValue(e)}
-                                                        onChange={(e) => setBannerContent(e)}
+                                            <CKEditor
+                                                editor={ ClassicEditor }
+                                                data={bannerContent}
+                                                onChange={ ( event, editor ) => {
+                                                    setBannerContent(editor.getData());
+                                                } }
                                             />
+
 
                                         </Form.Group>
                                         <Form.Group as={Col} md="12" className="mb-3">
                                             <Form.Label>Page Content</Form.Label>
+                                            <CKEditor
+                                                editor={ ClassicEditor }
+                                                data={pageContent}
+                                                onChange={ ( event, editor ) => {
+                                                    setPageContent(editor.getData());
+                                                } }
 
-                                            <ReactQuill theme="snow"
-                                                        value={pageContent}
-                                                        onChange={(e) => setPageContent(e)}/>
+                                                // onChange={(e) => setBannerContent(e)}
+                                            />
+
                                         </Form.Group>
 
                                         <div className="mt-3">

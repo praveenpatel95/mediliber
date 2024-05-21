@@ -46,7 +46,7 @@ function JournalHeader({getJournalDetail}) {
     return (
         <>
             <div className="sticky-top">
-                <JournalHead journalName={journalDetail?.name}/>
+                <JournalHead journalName={journalDetail?.name} journalSlug={journalSlug}/>
                 <JournalMenu
                     journalSlug={journalSlug}
                 />
